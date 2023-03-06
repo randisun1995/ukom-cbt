@@ -23,7 +23,7 @@ class ParticipantController extends Controller
         //get students
         $participants = Participant::when(request()->q, function($participants) {
             $participants = $participants->where('name', 'like', '%'. request()->q . '%');
-        })->with('position')->latest()->paginate(5);
+        })->with('position')->latest()->paginate(10);
 
         //append query string to pagination links
         $participants->appends(['q' => request()->q]);

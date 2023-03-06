@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('position_id')->references('id')->on('positions')->cascadeOnDelete();
             $table->foreignId('level_id')->references('id')->on('levels')->cascadeOnDelete();
-            $table->bigInteger('nip')->unique();
+            $table->string('nip')->unique();
             $table->string('name');
             $table->string('password');
             $table->string('instansi_id')->references('id')->on('instansis')->cascadeOnDelete();;
