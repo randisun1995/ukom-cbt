@@ -1,8 +1,8 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark navbar-theme-primary mb-4 shadow">
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark navbar-theme-primary bg-dark mb-4 shadow">
         <div class="container position-relative">
-            <Link class="navbar-brand me-lg-3" href="/participant/dashboard">
-                <img class="navbar-brand-dark" src="/assets/images/logob.png" style="height:100px">
+            <Link class="navbar-brand" href="/participant/dashboard">
+                <img class="navbar-brand-dark" src="/assets/images/logob.png" style="height:120px">
             </Link>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">

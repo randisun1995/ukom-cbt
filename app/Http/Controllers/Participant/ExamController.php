@@ -142,11 +142,13 @@ class ExamController extends Controller
      */
     public function show($id, $page)
     {
+
      //get grade / nilai
     $grade = Grade::first();
     if (!empty($grade->end_time)) {
         return redirect()->route('participant.dashboard');
     }
+
         //get exam group
         $exam_group = ExamGroup::with('exam.level', 'exam_session', 'participant.position')
                     ->where('participant_id', auth()->guard('participant')->user()->id)

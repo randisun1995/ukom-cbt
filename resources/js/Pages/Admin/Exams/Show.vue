@@ -64,7 +64,7 @@
                                     <tr v-for="(question, index) in exam.questions.data" :key="index">
                                         <td class="fw-bold text-center">{{ ++index + (exam.questions.current_page - 1) * exam.questions.per_page }}</td>
                                         <td>
-                                            <div class="fw-bold" v-html="question.question"></div>
+                                            <div style="word-wrap: break-word; white-space: normal;" class="fw-bold" v-html="question.question"></div>
                                             <hr>
                                             <ol type="A">
                                                 <li v-html="question.option_1" :class="{ 'text-success fw-bold': question.answer == '1' }"></li>
@@ -74,7 +74,7 @@
                                                 <li v-html="question.option_5" :class="{ 'text-success fw-bold': question.answer == '5' }"></li>
                                             </ol>
                                         </td>
-                                        <td class="text-center">
+                                        <td style="vertical-align: middle;" class="text-center">
                                             <Link :href="`/admin/exams/${exam.id}/questions/${question.id}/edit`" class="btn btn-sm btn-info border-0 shadow me-2"
                                                 type="button"><i class="fa fa-pencil-alt"></i></Link>
                                             <button @click.prevent="destroy(exam.id, question.id)" class="btn btn-sm btn-danger border-0"><i class="fa fa-trash"></i></button>

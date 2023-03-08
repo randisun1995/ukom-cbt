@@ -13,22 +13,18 @@
         <div class="col-md-6" v-for="(data, index) in exam_groups" :key="index">
             <div class="card border-0 shadow">
                 <div class="card-body">
-                    <h5>{{ data.exam_group.exam.title }}</h5>
+                    <h5>Uji Kompetensi {{ data.exam_group.exam_session.title }}</h5>
                     <hr>
                     <div class="table-responsive">
                         <table class="table table-centered table-nowrap mb-0 rounded">
                             <thead>
                                 <tr>
-                                    <td class="fw-bold">Mata Pelajaran</td>
-                                    <td>{{ data.exam_group.exam.level.title }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Kelas</td>
+                                    <td class="fw-bold">Jabatan</td>
                                     <td>{{ data.exam_group.participant.position.title }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Sesi</td>
-                                    <td>{{ data.exam_group.exam_session.title }}</td>
+                                    <td class="fw-bold">Jenjang</td>
+                                    <td>{{ data.exam_group.exam.level.title }}</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">Mulai</td>
@@ -37,6 +33,10 @@
                                 <tr>
                                     <td class="fw-bold">Selesai</td>
                                     <td>{{ data.exam_group.exam_session.end_time }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Nilai</td>
+                                    <td>{{data.grade.grade }}</td>
                                 </tr>
                             </thead>
                         </table>

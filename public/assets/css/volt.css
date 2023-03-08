@@ -22530,7 +22530,7 @@ textarea.form-control-lg {
 }
 
 .navbar-theme-primary:not(.headroom) {
-    background-color: #1F2937;
+    background-color: #778899;
 }
 
 /**
@@ -28768,7 +28768,7 @@ custom
 **/
 body {
     font-family: 'Quicksand', sans-serif!important;
-    background-color: lightgray!important;
+    background-color:   #f1fdff!important;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Quicksand', sans-serif!important;

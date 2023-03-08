@@ -39,12 +39,12 @@
                                     <td>{{ exam_group.participant.position.title }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Jenjang</td>
+                                    <td class="fw-bold center-center">Jenjang</td>
                                     <td>{{ exam_group.exam.level.title }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Ujian</td>
-                                    <td>{{ exam_group.exam.title }}</td>
+                                    <td style="vertical-align: middle;" class="fw-bold">Jenis Ujian</td>
+                                    <td style="word-wrap: break-word; white-space: normal;">{{ exam_group.exam_session.title }}</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">Durasi</td>

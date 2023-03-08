@@ -48,7 +48,7 @@
                                     <tr v-for="(ques, index) in quess.data" :key="index">
                                         <td class="fw-bold text-center">{{ ++index + (quess.current_page - 1) * quess.per_page }}</td>
                                         <td>
-                                            <div class="fw-bold" v-html="ques.question"></div>
+                                            <div style="word-wrap: break-word; white-space: normal;" class="fw-bold" v-html="ques.question"></div>
                                             <div class="mt-2" v-html="ques.exam.title"></div>
                                             <hr>
                                             <ol type="A">
@@ -59,7 +59,7 @@
                                                 <li v-html="ques.option_5" :class="{ 'text-success fw-bold': ques.answer == '5' }"></li>
                                             </ol>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center" style="vertical-align: middle;">
                                             <Link :href="`/admin/questions/${ques.id}/edit`" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></Link>
                                             <button @click.prevent="destroy(ques.id)" class="btn btn-sm btn-danger border-0"><i class="fa fa-trash"></i></button>
                                         </td>

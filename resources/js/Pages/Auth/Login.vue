@@ -9,12 +9,11 @@
         </div>
         <form @submit.prevent="submit" class="mt-4">
             <div class="form-group mb-4">
-                <label for="email">Email Address</label>
                 <div class="input-group">
-                    <span class="input-group-text" id="basic-addon1">
-                        <i class="fa fa-envelope"></i>
-                    </span>
-                    <input type="email" class="form-control" v-model="form.email" placeholder="Email Address">
+                <div class="form-floating">
+                    <input type="email" class="form-control" v-model="form.email" placeholder="Email Address" id="email"  size="40">
+                    <label for="email"> <i class="fa fa-envelope me-3"></i>Email</label>
+                </div>
                 </div>
                 <div v-if="errors.email" class="alert alert-danger mt-2">
                     {{ errors.email }}
@@ -23,12 +22,11 @@
 
             <div class="form-group">
                 <div class="form-group mb-4">
-                    <label for="password">Password</label>
                     <div class="input-group">
-                        <span class="input-group-text" id="basic-addon2">
-                            <i class="fa fa-lock"></i>
-                        </span>
-                        <input type="password" placeholder="Password" class="form-control" v-model="form.password">
+                        <div class="form-floating">
+                        <input type="password" placeholder="Password" class="form-control" v-model="form.password" id="password" size="40">
+                        <label for="password"><i class="fa fa-lock me-3"></i>Password</label>
+                        </div>
                     </div>
                     <div v-if="errors.password" class="alert alert-danger mt-2">
                         {{ errors.password }}
@@ -43,7 +41,6 @@
                         </label>
                     </div>
                 </div>
-
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-gray-800">LOGIN</button>
