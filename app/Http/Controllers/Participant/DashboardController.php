@@ -22,8 +22,6 @@ class DashboardController extends Controller
             ->where('participant_id', auth()->guard('participant')->user()->id)
             ->get();
 
-        return $exam_groups;
-
         //define variable array
         $data = [];
 

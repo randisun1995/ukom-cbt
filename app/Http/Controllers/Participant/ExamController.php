@@ -144,10 +144,12 @@ class ExamController extends Controller
     {
 
      //get grade / nilai
-    $grade = Grade::first();
-    if (!empty($grade->end_time)) {
-        return redirect()->route('participant.dashboard');
-    }
+    // $grade = Grade::first();
+    // if (!empty($grade->end_time)) {
+    //     return redirect()->route('participant.dashboard');
+    // }
+
+
 
         //get exam group
         $exam_group = ExamGroup::with('exam.level', 'exam_session', 'participant.position')
@@ -155,6 +157,12 @@ class ExamController extends Controller
                     ->where('id', $id)
                     ->first();
 
+        $grade = Grade::where('participant_id',$exam_group->participant_id)->first();
+        
+        if (!empty($grade->end_time)) {
+            return redirect()->route('participant.dashboard');
+            }
+    
         if(!$exam_group) {
             return redirect()->route('participant.dashboard');
         }
