@@ -25,12 +25,12 @@ class DatabaseSeeder extends Seeder
         Instansi::create([
             'title'      => 'Menpan',
         ]);
-        Position::create([
-            'title'      => 'ASDMA',
-        ]);
-        Position::create([
-            'title'      => 'Asesor',
-        ]);
+        // Position::create([
+        //     'title'      => 'ASDMA',
+        // ]);
+        // Position::create([
+        //     'title'      => 'Asesor',
+        // ]);
         Level::create([
             'title'      => 'Pertama',
         ]);

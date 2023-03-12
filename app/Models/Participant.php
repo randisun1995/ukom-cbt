@@ -12,12 +12,12 @@ class Participant extends Authenticatable
 
     protected $fillable = [
         'position_id',
-        'level_id',
+        // 'level_id',
         'nip',
         'name',
         'password',
         'instansi_id',
-        'type'
+        // 'type'
     ];
 
     public function position()
@@ -25,10 +25,10 @@ class Participant extends Authenticatable
         return $this->belongsTo(Position::class);
     }
 
-    public function level()
-    {
-        return $this->belongsTo(Level::class);
-    }
+    // public function level()
+    // {
+    //     return $this->belongsTo(Level::class);
+    // }
 
     public function instansi()
     {

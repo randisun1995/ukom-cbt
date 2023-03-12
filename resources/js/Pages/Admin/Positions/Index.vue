@@ -35,6 +35,7 @@
                                     <tr class="border-0">
                                         <th class="border-0 rounded-start" style="width:5%">No.</th>
                                         <th class="border-0">Nama Jabatan</th>
+                                        <th class="border-0">Jenjang</th>
                                         <th class="border-0 rounded-end" style="width:15%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -43,6 +44,7 @@
                                     <tr v-for="(position, index) in positions.data" :key="index">
                                         <td class="fw-bold text-center">{{ ++index + (positions.current_page - 1) * positions.per_page }}</td>
                                         <td>{{ position.title }}</td>
+                                        <td>{{ position.level.title }}</td>
                                         <td class="text-center">
                                             <Link :href="`/admin/positions/${position.id}/edit`" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></Link>
                                             <button @click.prevent="destroy(position.id)" class="btn btn-sm btn-danger border-0"><i class="fa fa-trash"></i></button>
@@ -97,6 +99,7 @@
         //props
         props: {
             positions: Object,
+            levels: Object,
         },
 
         //inisialisasi composition API

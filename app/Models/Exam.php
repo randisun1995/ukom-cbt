@@ -11,7 +11,7 @@ class Exam extends Model
 
     protected $fillable = [
         'title',
-        'level_id',
+        // 'level_id',
         'position_id',
         'duration',
         'description',
@@ -20,10 +20,10 @@ class Exam extends Model
         'show_answer',
     ];
 
-    public function level()
-    {
-        return $this->belongsTo(Level::class);
-    }
+    // public function level()
+    // {
+    //     return $this->belongsTo(Level::class);
+    // }
 
     public function position()
     {

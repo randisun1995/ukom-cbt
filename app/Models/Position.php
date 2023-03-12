@@ -10,5 +10,11 @@ class Position extends Model
     use HasFactory;
     protected $fillable = [
         'title',
+        'level_id',
     ];
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
 }

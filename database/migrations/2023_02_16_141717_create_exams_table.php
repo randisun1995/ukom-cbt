@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('level_id')->references('id')->on('levels')->cascadeOnDelete();
+            // $table->foreignId('level_id')->references('id')->on('levels')->cascadeOnDelete();
             $table->foreignId('position_id')->references('id')->on('positions')->cascadeOnDelete();
             $table->integer('duration');
             $table->text('description');

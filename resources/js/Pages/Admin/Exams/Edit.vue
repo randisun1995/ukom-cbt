@@ -21,7 +21,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="mb-4">
                                         <label>Jenjang</label>
                                         <select class="form-select" v-model="form.level_id">
@@ -31,10 +31,10 @@
                                             {{ errors.level_id }}
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Kelas</label>
+                                        <label>Jabatan</label>
                                         <select class="form-select" v-model="form.position_id">
                                             <option v-for="(position, index) in positions" :key="index" :value="position.id">{{ position.title }}</option>
                                         </select>
@@ -161,7 +161,7 @@
         props: {
             errors: Object,
             exam: Object,
-            levels: Array,
+            // levels: Array,
             positions: Array,
         },
 
@@ -171,7 +171,7 @@
             //define form with reactive
             const form = reactive({
                 title: props.exam.title,
-                level_id: props.exam.level_id,
+                // level_id: props.exam.level_id,
                 position_id: props.exam.position_id,
                 duration: props.exam.duration,
                 description: props.exam.description,
@@ -187,7 +187,7 @@
                 Inertia.put(`/admin/exams/${props.exam.id}`, {
                     //data
                     title: form.title,
-                    level_id: form.level_id,
+                    // level_id: form.level_id,
                     position_id: form.position_id,
                     duration: form.duration,
                     description: form.description,

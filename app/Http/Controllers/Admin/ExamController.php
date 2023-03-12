@@ -40,10 +40,10 @@ class ExamController extends Controller
      */
     public function create()
     {
-        //get lessons
+        //get levels
         $levels = Level::all();
 
-        //get classrooms
+        //get positions
         $positions = Position::all();
 
         //render with inertia

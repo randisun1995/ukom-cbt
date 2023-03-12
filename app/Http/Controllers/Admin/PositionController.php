@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Position;
+use App\Models\Level;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,7 +19,7 @@ class PositionController extends Controller
         //get positions
         $positions = Position::when(request()->q, function($positions) {
             $positions = $positions->where('title', 'like', '%'. request()->q . '%');
-        })->latest()->paginate(5);
+        })->with('level')->latest()->paginate(5);
 
         //append query string to pagination links
         $positions->appends(['q' => request()->q]);
@@ -36,8 +37,12 @@ class PositionController extends Controller
      */
     public function create()
     {
+         //get levels
+         $levels = Level::all();
         //render with inertia
-        return inertia('Admin/Positions/Create');
+        return inertia('Admin/Positions/Create',[
+            'levels' => $levels,
+        ]);
     }
 
     /**
@@ -48,14 +53,19 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
+
+
+
         //validate request
         $request->validate([
-            'title' => 'required|string|unique:positions'
+            'title' => 'required|string|unique:positions',
+            'level_id' => 'required'
         ]);
 
         //create classroom
         Position::create([
             'title' => $request->title,
+            'level_id' => $request->level_id,
         ]);
 
         //redirect
@@ -70,12 +80,16 @@ class PositionController extends Controller
      */
     public function edit($id)
     {
-        //get classroom
+        //get position
         $position = Position::findOrFail($id);
+
+        //get levels
+        $levels = Level::all();
 
         //render with inertia
         return inertia('Admin/Positions/Edit', [
             'position' => $position,
+            'levels' =>  $levels,
         ]);
     }
 

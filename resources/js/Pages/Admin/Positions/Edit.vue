@@ -12,14 +12,28 @@
                         <hr>
                         <form @submit.prevent="submit">
 
-                            <div class="mb-4">
-                                <label>Nama Jabatan</label>
-                                <input type="text" class="form-control" placeholder="Masukkan Nama Jabatan" v-model="form.title">
-
-                                <div v-if="errors.title" class="alert alert-danger mt-2">
-                                    {{ errors.title }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Nama Jabatan</label>
+                                        <input type="text" class="form-control" placeholder="Masukkan Nama Jabatan" v-model="form.title">
+                                        <div v-if="errors.title" class="alert alert-danger mt-2">
+                                            {{ errors.title }}
+                                        </div>
+                                    </div>
                                 </div>
 
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Jenjang</label>
+                                        <select class="form-select" v-model="form.level_id">
+                                            <option v-for="(level, index) in levels" :key="index" :value="level.id">{{ level.title }}</option>
+                                        </select>
+                                        <div v-if="errors.level_id" class="alert alert-danger mt-2">
+                                            {{ errors.level_id }}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-md btn-primary border-0 shadow me-2">Update</button>
@@ -65,7 +79,8 @@
         //props
         props: {
             errors: Object,
-            position: Object
+            position: Object,
+            levels: Array,
         },
 
         //inisialisasi composition API
@@ -74,6 +89,7 @@
             //define form with reactive
             const form = reactive({
                 title: props.position.title,
+                level_id: '',
             });
 
             //method "submit"
@@ -83,6 +99,7 @@
                 Inertia.put(`/admin/positions/${props.position.id}`, {
                     //data
                     title: form.title,
+                    level_id: form.level_id,
                 }, {
                     onSuccess: () => {
                         //show success alert

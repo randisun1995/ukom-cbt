@@ -16,12 +16,11 @@ return new class extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('position_id')->references('id')->on('positions')->cascadeOnDelete();
-            $table->foreignId('level_id')->references('id')->on('levels')->cascadeOnDelete();
+            // $table->foreignId('level_id')->references('id')->on('levels')->cascadeOnDelete();
             $table->string('nip')->unique();
             $table->string('name');
             $table->string('password');
-            $table->string('instansi_id')->references('id')->on('instansis')->cascadeOnDelete();;
-            $table->string('type');
+            $table->string('instansi_id')->references('id')->on('instansis')->cascadeOnDelete();
             $table->timestamps();
         });
     }

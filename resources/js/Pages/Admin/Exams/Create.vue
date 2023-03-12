@@ -21,9 +21,9 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Level</label>
+                                        <label>Jenjang</label>
                                         <select class="form-select" v-model="form.level_id">
                                             <option v-for="(level, index) in levels" :key="index" :value="level.id">{{ level.title }}</option>
                                         </select>
@@ -31,7 +31,7 @@
                                             {{ errors.level_id }}
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label>Jabatan</label>
@@ -160,7 +160,7 @@
         //props
         props: {
             errors: Object,
-            levels: Array,
+            // levels: Array,
             positions: Array,
         },
 
@@ -170,7 +170,7 @@
             //define form with reactive
             const form = reactive({
                 title: '',
-                level_id: '',
+                // level_id: '',
                 position_id: '',
                 duration: '',
                 description: '',
@@ -186,7 +186,7 @@
                 Inertia.post('/admin/exams', {
                     //data
                     title: form.title,
-                    level_id: form.level_id,
+                    // level_id: form.level_id,
                     position_id: form.position_id,
                     duration: form.duration,
                     description: form.description,
