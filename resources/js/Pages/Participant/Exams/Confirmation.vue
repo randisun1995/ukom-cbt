@@ -35,16 +35,8 @@
                                     <td>{{ exam_group.participant.name }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Jabatan</td>
-                                    <td>{{ exam_group.participant.position.title }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold center-center">Jenjang</td>
-                                    <td>{{ exam_group.exam.level.title }}</td>
-                                </tr>
-                                <tr>
-                                    <td style="vertical-align: middle;" class="fw-bold">Jenis Ujian</td>
-                                    <td style="word-wrap: break-word; white-space: normal;">{{ exam_group.exam_session.title }}</td>
+                                    <td class="fw-bold">Jabatan Dituju</td>
+                                    <td>{{ exam_group.participant.position.title }} {{ exam_group.participant.position.level.title }}</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">Durasi</td>

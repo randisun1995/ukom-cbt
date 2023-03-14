@@ -50,8 +50,7 @@
                                         <td>
                                             <strong class="fw-bold">{{ exam_session.exam.title }}</strong>
                                             <ul class="mt-2">
-                                                <li>Jabatan : <strong class="fw-bold">{{ exam_session.exam.position.title }}</strong></li>
-                                                <li>Jenjang : <strong class="fw-bold">{{ exam_session.exam.level.title }}</strong></li>
+                                                <li>Jabatan Dituju : <strong class="fw-bold">{{ exam_session.exam.position.title }} {{ exam_session.exam.position.level.title }}</strong></li>
                                             </ul>
                                         </td>
                                         <td>{{ exam_session.title }}</td>

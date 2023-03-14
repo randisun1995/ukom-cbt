@@ -15,7 +15,7 @@
                                 <div class="col-md-9">
                                     <label class="control-label" for="name">Ujian</label>
                                     <select class="form-select" v-model="form.exam_id">
-                                        <option v-for="(exam, index) in exams" :key="index" :value="exam.id">{{ exam.title }} — Jabatan : {{ exam.position.title }} — Jenjang : {{ exam.level.title }}</option>
+                                        <option v-for="(exam, index) in exams" :key="index" :value="exam.id">{{ exam.title }} — Jabatan Dituju : {{ exam.position.title }} {{ exam.position.level.title }}</option>
                                     </select>
                                     <div v-if="errors.exam_id" class="alert alert-danger mt-2">
                                         {{ errors.exam_id }}

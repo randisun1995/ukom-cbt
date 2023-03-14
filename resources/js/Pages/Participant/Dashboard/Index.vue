@@ -19,12 +19,8 @@
                         <table class="table table-centered table-nowrap mb-0 rounded">
                             <thead>
                                 <tr>
-                                    <td class="fw-bold">Jabatan</td>
-                                    <td>{{ data.exam_group.participant.position.title }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Jenjang</td>
-                                    <td>{{ data.exam_group.exam.level.title }}</td>
+                                    <td class="fw-bold">Jabatan Dituju</td>
+                                    <td>{{ data.exam_group.participant.position.title }} {{ data.exam_group.participant.position.level.title }}</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">Mulai</td>

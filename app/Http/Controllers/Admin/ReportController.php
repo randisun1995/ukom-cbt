@@ -21,7 +21,7 @@ class ReportController extends Controller
     public function index()
     {
         //geta ll exams
-        $exams = Exam::with('level', 'position')->get();
+        $exams = Exam::with('position', 'position.level')->get();
 
         return inertia('Admin/Reports/Index', [
             'exams'         => $exams,
@@ -42,10 +42,10 @@ class ReportController extends Controller
         ]);
 
         //geta ll exams
-        $exams = Exam::with('level', 'position')->get();
+        $exams = Exam::with('position', 'position.level')->get();
 
         //get exam
-        $exam = Exam::with('level', 'position')
+        $exam = Exam::with('position', 'position.level')
                 ->where('id', $request->exam_id)
                 ->first();
 
@@ -55,7 +55,7 @@ class ReportController extends Controller
             $exam_session = ExamSession::where('exam_id', $exam->id)->first();
 
             //get grades / nilai
-            $grades = Grade::with('participant', 'exam.position', 'exam.level', 'exam_session')
+            $grades = Grade::with('participant', 'exam.position', 'exam.position.level', 'exam_session')
                     ->where('exam_id', $exam->id)
                     ->where('exam_session_id', $exam_session->id)
                     ->get();
@@ -80,7 +80,7 @@ class ReportController extends Controller
     public function export(Request $request)
     {
         //get exam
-        $exam = Exam::with('level', 'position')
+        $exam = Exam::with('position', 'position.level')
                 ->where('id', $request->exam_id)
                 ->first();
 
@@ -88,7 +88,7 @@ class ReportController extends Controller
         $exam_session = ExamSession::where('exam_id', $exam->id)->first();
 
         //get grades / nilai
-        $grades = Grade::with('participant', 'exam.position', 'exam.level', 'exam_session')
+        $grades = Grade::with('participant', 'exam.position', 'exam.position.level', 'exam_session')
                 ->where('exam_id', $exam->id)
                 ->where('exam_session_id', $exam_session->id)
                 ->get();

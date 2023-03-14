@@ -5,7 +5,7 @@
     <div class="container-fluid mb-5 mt-5">
         <div class="row">
             <div class="col-md-12">
-                <Link href="/admin/jabatans" class="btn btn-md btn-primary border-0 shadow mb-3" type="button"><i class="fa fa-long-arrow-alt-left me-2"></i> Kembali</Link>
+                <Link href="/admin/positions" class="btn btn-md btn-primary border-0 shadow mb-3" type="button"><i class="fa fa-long-arrow-alt-left me-2"></i> Kembali</Link>
                 <div class="card border-0 shadow">
                     <div class="card-body">
                         <h5><i class="fa fa-clone"></i> Edit Jabatan</h5>
@@ -89,7 +89,8 @@
             //define form with reactive
             const form = reactive({
                 title: props.position.title,
-                level_id: '',
+                level_id: props.position.level_id,
+            
             });
 
             //method "submit"

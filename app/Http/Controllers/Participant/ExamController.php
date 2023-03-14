@@ -21,7 +21,7 @@ class ExamController extends Controller
     public function confirmation($id)
     {
         //get exam group
-        $exam_group = ExamGroup::with('exam.level', 'exam_session', 'participant.position')
+        $exam_group = ExamGroup::with('exam_session', 'participant.position', 'participant.position.level')
                     ->where('participant_id', auth()->guard('participant')->user()->id)
                     ->where('id', $id)
                     ->first();
@@ -49,7 +49,7 @@ class ExamController extends Controller
     public function startExam($id)
     {
         //get exam group
-        $exam_group = ExamGroup::with('exam.level', 'exam_session', 'participant.position')
+        $exam_group = ExamGroup::with('exam_session', 'participant.position', 'participant.position.level')
                     ->where('participant_id', auth()->guard('participant')->user()->id)
                     ->where('id', $id)
                     ->first();
@@ -142,17 +142,8 @@ class ExamController extends Controller
      */
     public function show($id, $page)
     {
-
-     //get grade / nilai
-    // $grade = Grade::first();
-    // if (!empty($grade->end_time)) {
-    //     return redirect()->route('participant.dashboard');
-    // }
-
-
-
         //get exam group
-        $exam_group = ExamGroup::with('exam.level', 'exam_session', 'participant.position')
+        $exam_group = ExamGroup::with('exam_session', 'participant.position', 'participant.position.level')
                     ->where('participant_id', auth()->guard('participant')->user()->id)
                     ->where('id', $id)
                     ->first();
@@ -320,7 +311,7 @@ class ExamController extends Controller
     public function resultExam($exam_group_id)
     {
         //get exam group
-        $exam_group = ExamGroup::with('exam.level', 'exam_session', 'participant.position')
+        $exam_group = ExamGroup::with('exam_session', 'participant.position', 'participant.position.level')
                 ->where('participant_id', auth()->guard('participant')->user()->id)
                 ->where('id', $exam_group_id)
                 ->first();

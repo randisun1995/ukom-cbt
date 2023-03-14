@@ -35,7 +35,7 @@
                                     <tr class="border-0">
                                         <th class="border-0 rounded-start" style="width:5%">No.</th>
                                         <th class="border-0">Ujian</th>
-                                        <th class="border-0">Jenjang Jabatan</th>
+                                        <th class="border-0">Jabatan Dituju</th>
                                         <th class="border-0">Jumlah Soal</th>
                                         <th class="border-0 rounded-end" style="width:15%">Aksi</th>
                                     </tr>
@@ -45,7 +45,7 @@
                                     <tr v-for="(exam, index) in exams.data" :key="index">
                                         <td class="fw-bold text-center">{{ ++index + (exams.current_page - 1) * exams.per_page }}</td>
                                         <td>{{ exam.title }}</td>
-                                        <td class="text-center">{{ exam.position.title }}{{ exam.position.level.title }}</td>
+                                        <td class="">{{ exam.position.title }} {{ exam.position.level.title }}</td>
                                         <td class="text-center">{{ exam.questions.length }}</td>
                                         <td class="text-center">
                                             <Link :href="`/admin/exams/${exam.id}`" class="btn btn-sm btn-primary border-0 shadow me-2" type="button"><i class="fa fa-plus-circle"></i></Link>

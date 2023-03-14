@@ -21,7 +21,7 @@ class ExamSessionController extends Controller
         //get exam_sessions
         $exam_sessions = ExamSession::when(request()->q, function($exam_sessions) {
             $exam_sessions = $exam_sessions->where('title', 'like', '%'. request()->q . '%');
-        })->with('exam.position', 'exam.level', 'exam_groups')->latest()->paginate(5);
+        })->with('exam.position','exam.position.level','exam_groups')->latest()->paginate(5);
 
         //append query string to pagination links
         $exam_sessions->appends(['q' => request()->q]);
@@ -85,7 +85,7 @@ class ExamSessionController extends Controller
     public function show($id)
     {
         //get exam_session
-        $exam_session = ExamSession::with('exam.position', 'exam.level')->findOrFail($id);
+        $exam_session = ExamSession::with('exam.position', 'exam.position.level')->findOrFail($id);
 
         //get relation exam_groups with pagination
         $exam_session->setRelation('exam_groups', $exam_session->exam_groups()->with('participant.position')->paginate(5));
@@ -175,10 +175,10 @@ class ExamSessionController extends Controller
         //get exams
         $exam = $exam_session->exam;
 
-        //get students already enrolled
+        //get participants already enrolled
         $participants_enrolled = ExamGroup::where('exam_id', $exam->id)->where('exam_session_id', $exam_session->id)->pluck('participant_id')->all();
 
-        //get students
+        //get participants
         $participants = Participant::with('position')->where('position_id', $exam->position_id)->whereNotIn('id', $participants_enrolled)->get();
 
         //render with inertia
@@ -205,7 +205,7 @@ class ExamSessionController extends Controller
         //create exam_group
         foreach($request->participant_id as $participant_id) {
 
-            //select student
+            //select participant
             $participant = Participant::findOrFail($participant_id);
 
             //create exam_group

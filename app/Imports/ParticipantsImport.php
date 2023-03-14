@@ -20,9 +20,7 @@ class ParticipantsImport implements ToModel, WithHeadingRow, WithValidation
             'nip'          => (int) $row['nip'],
             'name'          => $row['name'],
             'password'      => $row['password'],
-            'type'        => $row['type'],
             'position_id'  => (int) $row['position_id'],
-            'level_id'  => (int) $row['level_id'],
             'instansi_id'  => (int) $row['instansi_id'],
         ]);
     }

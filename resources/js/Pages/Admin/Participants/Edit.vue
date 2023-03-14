@@ -36,41 +36,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Jabatan</label>
+                                        <label>Jabatan Dituju</label>
                                         <select class="form-select" v-model="form.position_id">
-                                            <option v-for="(position, index) in positions" :key="index" :value="position.id">{{ position.title }}</option>
+                                            <option v-for="(position, index) in positions" :key="index" :value="position.id">{{ position.title }} {{ position.level.title }}</option>
                                         </select>
                                         <div v-if="errors.position_id" class="alert alert-danger mt-2">
                                             {{ errors.position_id }}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mb-4">
-                                        <label>Jenis Ukom</label>
-                                        <select class="form-select" v-model="form.type">
-                                            <option value="K">Kenaikan Jenjang</option>
-                                            <option value="P">Perpindahan Jabatan</option>
-                                        </select>
-                                        <div v-if="errors.type" class="alert alert-danger mt-2">
-                                            {{ errors.type }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-4">
-                                        <label>Jenjang</label>
-                                        <select class="form-select" v-model="form.level_id">
-                                            <option v-for="(level, index) in levels" :key="index" :value="level.id">{{ level.title }}</option>
-                                        </select>
-                                        <div v-if="errors.level_id" class="alert alert-danger mt-2">
-                                            {{ errors.level_id }}
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label>Instansi</label>
@@ -82,6 +57,35 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <!-- <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Jenis Ukom</label>
+                                        <select class="form-select" v-model="form.type">
+                                            <option value="K">Kenaikan Jenjang</option>
+                                            <option value="P">Perpindahan Jabatan</option>
+                                        </select>
+                                        <div v-if="errors.type" class="alert alert-danger mt-2">
+                                            {{ errors.type }}
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                            <div class="row">
+                                <!-- <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Jenjang</label>
+                                        <select class="form-select" v-model="form.level_id">
+                                            <option v-for="(level, index) in levels" :key="index" :value="level.id">{{ level.title }}</option>
+                                        </select>
+                                        <div v-if="errors.level_id" class="alert alert-danger mt-2">
+                                            {{ errors.level_id }}
+                                        </div>
+                                    </div>
+                                </div> -->
+                               
                             </div>
 
                             <div class="row">
@@ -147,7 +151,7 @@
         props: {
             errors: Object,
             positions: Array,
-            levels: Array,
+            // levels: Array,
             instansis: Array,
             participant: Object
         },
@@ -160,9 +164,9 @@
                 nip: props.participant.nip,
                 name: props.participant.name,
                 position_id: props.participant.position_id,
-                level_id: props.participant.level_id,
+                // level_id: props.participant.level_id,
                 instansi_id: props.participant.instansi_id,
-                type: props.participant.type,
+                // type: props.participant.type,
                 password: '',
                 password_confirmation: ''
             });
@@ -176,9 +180,9 @@
                     nip: form.nip,
                     name: form.name,
                     position_id: form.position_id,
-                    level_id: form.level_id,
+                    // level_id: form.level_id,
                     instansi_id: form.instansi_id,
-                    type: form.type,
+                    // type: form.type,
                     password: form.password,
                     password_confirmation: form.password_confirmation
                 }, {

@@ -23,7 +23,7 @@ class ExamController extends Controller
         //get exams
         $exams = Exam::when(request()->q, function($exams) {
             $exams = $exams->where('title', 'like', '%'. request()->q . '%');
-        })->with('level', 'position', 'questions')->latest()->paginate(5);
+        })->with('position','position.level', 'questions')->latest()->paginate(5);
 
         //append query string to pagination links
         $exams->appends(['q' => request()->q]);
@@ -40,15 +40,12 @@ class ExamController extends Controller
      */
     public function create()
     {
-        //get levels
-        $levels = Level::all();
 
         //get positions
-        $positions = Position::all();
+        $positions = Position::with('level')->get();
 
         //render with inertia
         return inertia('Admin/Exams/Create', [
-            'levels' => $levels,
             'positions' => $positions,
         ]);
     }
@@ -64,7 +61,6 @@ class ExamController extends Controller
         //validate request
         $request->validate([
             'title'             => 'required',
-            'level_id'         => 'required|integer',
             'position_id'      => 'required|integer',
             'duration'          => 'required|integer',
             'description'       => 'required',
@@ -76,7 +72,6 @@ class ExamController extends Controller
         //create exam
         Exam::create([
             'title'             => $request->title,
-            'level_id'         => $request->level_id,
             'position_id'      => $request->position_id,
             'duration'          => $request->duration,
             'description'       => $request->description,
@@ -99,7 +94,7 @@ class ExamController extends Controller
     public function show($id)
     {
         //get exam
-        $exam = Exam::with('level', 'position')->findOrFail($id);
+        $exam = Exam::with('position','position.level')->findOrFail($id);
 
         //get relation questions with pagination
         $exam->setRelation('questions', $exam->questions()->paginate(5));
@@ -120,17 +115,12 @@ class ExamController extends Controller
     {
         //get exam
         $exam = Exam::findOrFail($id);
-
-        //get lessons
-        $levels = Level::all();
-
-        //get classrooms
-        $positions = Position::all();
-
+    
+        //get positions
+        $positions = Position::with('level')->get();
         //render with inertia
         return inertia('Admin/Exams/Edit', [
             'exam' => $exam,
-            'levels' => $levels,
             'positions' => $positions,
         ]);
     }
@@ -147,7 +137,6 @@ class ExamController extends Controller
         //validate request
         $request->validate([
             'title'             => 'required',
-            'level_id'         => 'required|integer',
             'position_id'      => 'required|integer',
             'duration'          => 'required|integer',
             'description'       => 'required',
@@ -159,7 +148,6 @@ class ExamController extends Controller
         //update exam
         $exam->update([
             'title'             => $request->title,
-            'level_id'         => $request->level_id,
             'position_id'      => $request->position_id,
             'duration'          => $request->duration,
             'description'       => $request->description,

@@ -20,12 +20,8 @@
                                     <td>{{ exam_group.participant.name }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Jabatan</td>
-                                    <td>{{ exam_group.participant.position.title }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">Jenjang</td>
-                                    <td>{{ exam_group.exam.level.title }}</td>
+                                    <td class="fw-bold">Jabatan Dituju</td>
+                                    <td>{{ exam_group.participant.position.title }} {{ exam_group.participant.position.level.title }}</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">Ujian</td>

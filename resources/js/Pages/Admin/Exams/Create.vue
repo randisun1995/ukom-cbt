@@ -12,31 +12,21 @@
                         <hr>
                         <form @submit.prevent="submit">
 
-                            <div class="mb-4">
-                                <label>Nama Ujian</label>
-                                <input type="text" class="form-control" placeholder="Masukkan Nama Ujian" v-model="form.title">
-                                <div v-if="errors.title" class="alert alert-danger mt-2">
-                                    {{ errors.title }}
-                                </div>
-                            </div>
-
                             <div class="row">
-                                <!-- <div class="col-md-6">
-                                    <div class="mb-4">
-                                        <label>Jenjang</label>
-                                        <select class="form-select" v-model="form.level_id">
-                                            <option v-for="(level, index) in levels" :key="index" :value="level.id">{{ level.title }}</option>
-                                        </select>
-                                        <div v-if="errors.level_id" class="alert alert-danger mt-2">
-                                            {{ errors.level_id }}
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Jabatan</label>
+                                        <label>Nama Ujian</label>
+                                        <input type="text" class="form-control" placeholder="Masukkan Nama Ujian" v-model="form.title">
+                                        <div v-if="errors.title" class="alert alert-danger mt-2">
+                                        {{ errors.title }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Jabatan Dituju</label>
                                         <select class="form-select" v-model="form.position_id">
-                                            <option v-for="(position, index) in positions" :key="index" :value="position.id">{{ position.title }}</option>
+                                            <option v-for="(position, index) in positions" :key="index" :value="position.id">{{ position.title }} {{ position.level.title }}</option>
                                         </select>
                                         <div v-if="errors.position_id" class="alert alert-danger mt-2">
                                             {{ errors.position_id }}

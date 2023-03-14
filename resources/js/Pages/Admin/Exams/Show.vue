@@ -20,12 +20,8 @@
                                         <td>{{ exam.title }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="fw-bold">Jenjang</td>
-                                        <td>{{ exam.level.title }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">Jabatan</td>
-                                        <td>{{ exam.position.title }}</td>
+                                        <td class="fw-bold">Jabatan Dituju</td>
+                                        <td>{{ exam.position.title }} {{ exam.position.level.title }}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">Jumlah Soal</td>

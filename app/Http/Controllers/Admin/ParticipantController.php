@@ -20,10 +20,12 @@ class ParticipantController extends Controller
      */
     public function index()
     {
-        //get students
+
+        
+        //get participant
         $participants = Participant::when(request()->q, function($participants) {
             $participants = $participants->where('name', 'like', '%'. request()->q . '%');
-        })->with('position')->latest()->paginate(10);
+        })->with('position','position.level')->latest()->paginate(10);
 
         //append query string to pagination links
         $participants->appends(['q' => request()->q]);
@@ -42,13 +44,13 @@ class ParticipantController extends Controller
     public function create()
     {
         //get data
-        $levels = Level::all();
-        $positions = Position::all();
+       
+        $positions = Position::with('level')->get();
         $instansis = Instansi::all();
 
         //render with inertia
         return inertia('Admin/Participants/Create', [
-            'levels' => $levels,
+           
             'positions' => $positions,
             'instansis' => $instansis,
         ]);
@@ -66,10 +68,8 @@ class ParticipantController extends Controller
         //validate request
         $request->validate([
             'position_id'   => 'required',
-            'level_id'      => 'required',
             'name'          => 'required|string|max:255',
             'nip'           => 'required|unique:participants',
-            'type'          => 'required',
             'password'      => 'required|confirmed',
             'instansi_id'  => 'required'
         ]);
@@ -79,10 +79,8 @@ class ParticipantController extends Controller
         //create student
         Participant::create([
             'position_id'   => $request->position_id,
-            'level_id'      => $request->level_id,
             'name'          => $request->name,
             'nip'          => $request->nip,
-            'type'          => $request->type,
             'password'      => $request->password,
             'instansi_id'  => $request->instansi_id
         ]);
@@ -103,15 +101,13 @@ class ParticipantController extends Controller
         $participant = Participant::findOrFail($id);
 
         //get classrooms
-        $positions = Position::all();
-        $levels = Level::all();
+        $positions = Position::with('level')->get();
         $instansis = Instansi::all();
         //render with inertia
         return inertia('Admin/Participants/Edit', [
             'participant' => $participant,
             'positions' => $positions,
             'instansis' => $instansis,
-            'levels' => $levels,
         ]);
     }
 
@@ -127,10 +123,8 @@ class ParticipantController extends Controller
         //validate request
         $request->validate([
             'position_id'   => 'required',
-            'level_id'      => 'required',
             'name'          => 'required|string|max:255',
             'nip'           => 'required|unique:participants,nip,'.$participant->id,
-            'type'          => 'required',
             'instansi_id'  => 'required',
             'password'      => 'confirmed'
         ]);
@@ -141,10 +135,8 @@ class ParticipantController extends Controller
             //update student without password
             $participant->update([
                 'position_id'   => $request->position_id,
-                'level_id'      => $request->level_id,
                 'name'          => $request->name,
                 'nip'          => $request->nip,
-                'type'          => $request->type,
                 'instansi_id'  => $request->instansi_id
             ]);
 
@@ -153,10 +145,8 @@ class ParticipantController extends Controller
             //update student with password
             $participant->update([
                 'position_id'   => $request->position_id,
-                'level_id'      => $request->level_id,
                 'name'          => $request->name,
                 'nip'          => $request->nip,
-                'type'          => $request->type,
                 'password'      => $request->password,
                 'instansi_id'  => $request->instansi_id
             ]);

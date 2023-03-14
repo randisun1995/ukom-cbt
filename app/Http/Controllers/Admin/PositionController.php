@@ -105,11 +105,13 @@ class PositionController extends Controller
         //validate request
         $request->validate([
             'title' => 'required|string|unique:positions,title,'.$position->id,
+            'level_id' => 'required',
         ]);
 
         //update classroom
         $position->update([
             'title' => $request->title,
+            'level_id' => $request->level_id,
         ]);
 
         //redirect

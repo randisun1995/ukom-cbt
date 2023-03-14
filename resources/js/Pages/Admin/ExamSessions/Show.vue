@@ -20,12 +20,8 @@
                                         <td>{{ exam_session.exam.title }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="fw-bold">Jenjang</td>
-                                        <td>{{ exam_session.exam.level.title }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fw-bold">Jabatan</td>
-                                        <td>{{ exam_session.exam.position.title }}</td>
+                                        <td class="fw-bold">Jabatan Dituju</td>
+                                        <td>{{ exam_session.exam.position.title }} {{ exam_session.exam.position.level.title }}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">Sesi</td>
