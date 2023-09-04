@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('level_id')->references('id')->on('levels')->cascadeOnDelete();
-            $table->string('title')->unique();
+            $table->foreignId('level_id')->references('id')->on('levels')->onDelete('RESTRICT')->onUpdate('RESTRICT');
+            $table->string('title');
             $table->timestamps();
         });
     }

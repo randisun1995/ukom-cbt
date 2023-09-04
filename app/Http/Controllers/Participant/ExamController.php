@@ -61,7 +61,12 @@ class ExamController extends Controller
                     ->first();
 
         //update start time di table grades
+
         $grade->start_time = Carbon::now();
+        $grade->start_point = Carbon::now();
+        $grade->end_point = Carbon::now()->addMilliseconds($grade->duration);
+        $grade->status = "going";
+        // $grade->duration = Carbon::now()->diffInSeconds($grade->end);
         $grade->update();
 
         //cek apakah questions / soal ujian di random
@@ -142,6 +147,7 @@ class ExamController extends Controller
      */
     public function show($id, $page)
     {
+
         //get exam group
         $exam_group = ExamGroup::with('exam_session', 'participant.position', 'participant.position.level')
                     ->where('participant_id', auth()->guard('participant')->user()->id)
@@ -149,11 +155,11 @@ class ExamController extends Controller
                     ->first();
 
         $grade = Grade::where('participant_id',$exam_group->participant_id)->first();
-        
+
         if (!empty($grade->end_time)) {
             return redirect()->route('participant.dashboard');
             }
-    
+
         if(!$exam_group) {
             return redirect()->route('participant.dashboard');
         }
@@ -192,6 +198,20 @@ class ExamController extends Controller
                     ->where('participant_id', auth()->guard('participant')->user()->id)
                     ->first();
 
+        if ($duration->counter == $duration->summary) {
+            $grade->start_point = Carbon::now();
+            $grade->update();
+        };
+
+        //update status
+        $grade->status = "going";
+        $grade->update();
+
+        $now = Carbon::now();
+        $start = Carbon::parse($grade->start_point);
+        $counter = $now->diffInMilliseconds($start);
+        //
+
         //return with inertia
         return inertia('Participant/Exams/Show', [
             'id'                => (int) $id,
@@ -202,18 +222,25 @@ class ExamController extends Controller
             'question_active'   => $question_active,
             'answer_order'      => $answer_order,
             'duration'          => $duration,
+            'now'               => $now,
+            'counter'              => $counter,
         ]);
     }
 
     public function updateDuration(Request $request, $grade_id)
     {
+
         $grade = Grade::find($grade_id);
-        $grade->duration = $request->duration;
+        $now = Carbon::parse();
+        $start = Carbon::parse($grade->start_point);
+        $grade->counter = $now->diffInMilliseconds($start) + $grade->summary;
         $grade->update();
 
         return response()->json([
             'success'  => true,
-            'message' => 'Duration updated successfully.'
+            'message' => 'Duration updated successfully.',
+            'duration'=> $grade->counter,
+
         ]);
     }
 
@@ -226,13 +253,13 @@ class ExamController extends Controller
     public function answerQuestion(Request $request)
     {
         //update duration
-        $grade = Grade::where('exam_id', $request->exam_id)
-                ->where('exam_session_id', $request->exam_session_id)
-                ->where('participant_id', auth()->guard('participant')->user()->id)
-                ->first();
+        // $grade = Grade::where('exam_id', $request->exam_id)
+        //         ->where('exam_session_id', $request->exam_session_id)
+        //         ->where('participant_id', auth()->guard('participant')->user()->id)
+        //         ->first();
 
-        $grade->duration = $request->duration;
-        $grade->update();
+        // $grade->duration = $request->duration;
+        // $grade->update();
 
         //get question
         $question = Question::find($request->question_id);

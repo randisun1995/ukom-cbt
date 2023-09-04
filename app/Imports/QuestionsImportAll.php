@@ -6,23 +6,17 @@ use App\Models\Question;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class QuestionsImport implements ToModel, WithHeadingRow
+class QuestionsImportAll implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    private $exam_id;
-    public function __construct($exam_id)
-    {
-        $this->exam_id= $exam_id;
-    }
-
     public function model(array $row)
     {
         return new Question([
-            'exam_id'  => $this->exam_id,
+            'exam_id'  => (int) $row['exam_id'],
             'question'  => $row['question'],
             'option_1'  => $row['option_1'],
             'option_2'  => $row['option_2'],

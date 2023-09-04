@@ -19,10 +19,18 @@ return new class extends Migration
             $table->foreignId('exam_session_id')->references('id')->on('exam_sessions')->cascadeOnDelete();
             $table->foreignId('participant_id')->references('id')->on('participants')->cascadeOnDelete();
             $table->integer('duration');
+
+
+
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
             $table->integer('total_correct');
             $table->decimal('grade', 5, 2);
+            $table->string('status')->nullable();
+            $table->dateTime('start_point')->nullable();
+            $table->dateTime('end_point')->nullable();
+            $table->integer('counter')->nullable();
+            $table->integer('summary')->nullable();
             $table->timestamps();
         });
     }

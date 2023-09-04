@@ -57,7 +57,6 @@
                                         <th class="border-0 rounded-start" style="width:5%">No.</th>
                                         <th class="border-0">Nama Peserta</th>
                                         <th class="border-0">Jabatan</th>
-                                        <th class="border-0">Jenis Uji Kompetensi</th>
                                         <th class="border-0 rounded-end" style="width:15%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -67,7 +66,6 @@
                                         <td class="fw-bold text-center">{{ ++index + (exam_session.exam_groups.current_page - 1) * exam_session.exam_groups.per_page }}</td>
                                         <td>{{ data.participant.name }}</td>
                                         <td class="text-center">{{ data.participant.position.title }}</td>
-                                        <td class="text-center">{{ data.participant.type }}</td>
                                         <td class="text-center">
                                             <button @click.prevent="destroy(exam_session.id, data.id)" class="btn btn-sm btn-danger border-0"><i class="fa fa-trash"></i></button>
                                         </td>

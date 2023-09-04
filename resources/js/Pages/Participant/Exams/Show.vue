@@ -77,9 +77,9 @@
 
                                 <button @click.prevent="clickQuestion(index)" v-if="index+1 == page" class="btn btn-gray-400 btn-sm w-100">{{ index + 1 }}</button>
 
-                                <button @click.prevent="clickQuestion(index)" v-if="index+1 != page && question.answer == 0" class="btn btn-outline-info btn-sm w-100">{{ index + 1 }}</button>
+                                <button @click.prevent="clickQuestion(index)" v-if="index+1 != page && question.answer == 0" class="btn btn-danger btn-sm w-100">{{ index + 1 }}</button>
 
-                                <button @click.prevent="clickQuestion(index)" v-if="index+1 != page && question.answer != 0" class="btn btn-info btn-sm w-100">{{ index + 1 }}</button>
+                                <button @click.prevent="clickQuestion(index)" v-if="index+1 != page && question.answer != 0" class="btn btn-success btn-sm w-100">{{ index + 1 }}</button>
                             </div>
                         </div>
                     </div>
@@ -130,6 +130,9 @@
 </template>
 
 <script>
+
+
+
     //import layout student
     import LayoutParticipant from '../../../Layouts/Participant.vue';
 
@@ -141,7 +144,7 @@
 
     //import ref
     import {
-        ref
+        ref, onMounted,onUnmounted,watch,onBeforeUnmount
     } from 'vue';
 
     //import VueCountdown
@@ -179,6 +182,9 @@
             question_active: Object,
             answer_order: Array,
             duration: Object,
+            now: Object,
+            counter: Object,
+
         },
 
         //composition API
@@ -187,44 +193,46 @@
             //define options for answer
             let options = ["A", "B", "C", "D", "E"];
 
-            //define state counter
-            const counter = ref(0);
+            let intervalId;
+
+             //define state counter
+
+
+            const counter = ref(new Date(props.duration.start_point) - new Date(props.now));
 
             //define state duration
-            const duration = ref(props.duration.duration);
+            const duration = ref(props.duration.duration - props.counter);
 
-            //handleChangeDuration
-            const handleChangeDuration = (() => {
+//handleChangeDuration
+const handleChangeDuration = (() => {
 
-                //decrement duration
-                duration.value = duration.value - 1000;
+    //cek jika durasi di atas 0
+    if (duration.value > 0) {
 
-                //increment counter
-                counter.value = counter.value + 1;
+    }
+});
 
-                //cek jika durasi di atas 0
-                if (duration.value > 0) {
 
-                    //update duration if 10 seconds
-                    if (counter.value % 10 == 1) {
+  onMounted(() => {
+      // Update the database every 5 seconds
+      setInterval(() => {
+        // Perform the database update here
+        axios.put(`/participant/exam-duration/update/${props.duration.id}`,{
+        });
+      }, 10000);
+    });
 
-                        //update duration
-                        axios.put(`/participant/exam-duration/update/${props.duration.id}`, {
-                            duration: duration.value
-                        })
+    onBeforeUnmount(() => {
+      clearInterval(intervalId);
+    });
 
-                    }
-
-                }
-
-            });
 
             //metohd prevPage
             const prevPage = (() => {
 
                 //update duration
                 axios.put(`/participant/exam-duration/update/${props.duration.id}`, {
-                    duration: duration.value
+
                 });
 
                 //redirect to prevPage
@@ -237,7 +245,7 @@
 
                 //update duration
                 axios.put(`/participant/exam-duration/update/${props.duration.id}`, {
-                    duration: duration.value
+
                 });
 
                 //redirect to nextPage
@@ -249,7 +257,7 @@
 
                 //update duration
                 axios.put(`/participant/exam-duration/update/${props.duration.id}`, {
-                    duration: duration.value
+
                 });
 
                 //redirect to questin
@@ -305,6 +313,8 @@
                 showModalEndExam,
                 showModalEndTimeExam,
                 endExam,
+                counter,
+                // durationActive,
             }
 
         }

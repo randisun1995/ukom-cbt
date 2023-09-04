@@ -115,7 +115,7 @@ class ExamController extends Controller
     {
         //get exam
         $exam = Exam::findOrFail($id);
-    
+
         //get positions
         $positions = Position::with('level')->get();
         //render with inertia
@@ -302,7 +302,9 @@ class ExamController extends Controller
      * @return void
      */
     public function import(Exam $exam)
+
     {
+
         return inertia('Admin/Questions/Import', [
             'exam' => $exam
         ]);
@@ -316,12 +318,15 @@ class ExamController extends Controller
      */
     public function storeImport(Request $request, Exam $exam)
     {
+
         $this->validate($request, [
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
 
+
         // import data
-        Excel::import(new QuestionsImport(), $request->file('file'));
+
+        Excel::import(new QuestionsImport("$exam->id"), $request->file('file'));
 
         //redirect
         return redirect()->route('admin.exams.show', $exam->id);

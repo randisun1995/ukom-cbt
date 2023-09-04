@@ -22530,7 +22530,7 @@ textarea.form-control-lg {
 }
 
 .navbar-theme-primary:not(.headroom) {
-    background-color: #778899;
+    background-color: #767600;
 }
 
 /**
@@ -28777,11 +28777,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .form-control, .table td, .table th {
     font-size: initial!important;
 }
-.tox-notification { 
-    display: none !important 
+.tox-notification {
+    display: none !important
 }
-.fw-bold, .fw-bold * { 
-    font-weight: 600!important 
+.fw-bold, .fw-bold * {
+    font-weight: 600!important
 }
 td p {
     margin-bottom: 0px!important

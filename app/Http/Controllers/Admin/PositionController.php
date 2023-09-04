@@ -58,7 +58,7 @@ class PositionController extends Controller
 
         //validate request
         $request->validate([
-            'title' => 'required|string|unique:positions',
+            'title' => 'required|string',
             'level_id' => 'required'
         ]);
 

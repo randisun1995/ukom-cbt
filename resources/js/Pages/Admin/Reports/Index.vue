@@ -47,9 +47,10 @@
                                 <thead class="thead-dark">
                                     <tr class="border-0">
                                         <th class="border-0 rounded-start" style="width:5%">No.</th>
-                                        <th class="border-0">Ujian</th>
                                         <th class="border-0">Sesi</th>
+                                        <th class="border-0">NIP</th>
                                         <th class="border-0">Nama Peserta</th>
+                                        <th class="border-0">Instansi</th>
                                         <th class="border-0">Jabatan</th>
                                         <th class="border-0">Jenjang</th>
                                         <th class="border-0">Nilai</th>
@@ -61,9 +62,10 @@
                                         <td class="fw-bold text-center">
                                             {{ index + 1 }}
                                         </td>
-                                        <td>{{ grade.exam.title }}</td>
                                         <td>{{ grade.exam_session.title }}</td>
+                                        <td>{{ grade.participant.nip }}</td>
                                         <td>{{ grade.participant.name }}</td>
+                                        <td>{{ grade.participant.instansi }}</td>
                                         <td class="text-center">{{ grade.exam.position.title }}</td>
                                         <td>{{ grade.exam.level.title }}</td>
                                         <td class="fw-bold text-center">{{ grade.grade }}</td>

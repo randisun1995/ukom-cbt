@@ -6,7 +6,7 @@ use App\Models\Grade;
 use App\Models\ExamGroup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 class DashboardController extends Controller
 {
     /**
@@ -17,6 +17,8 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
+
+
         //get exam groups
         $exam_groups = ExamGroup::with('exam_session', 'participant.position', 'participant.position.level')
             ->where('participant_id', auth()->guard('participant')->user()->id)
@@ -49,12 +51,25 @@ class DashboardController extends Controller
 
             }
 
+            if($grade->counter > 0) {
+
+                // $diferen = (($grade->duration) - ($grade->counter));
+                // $grade->end_point = Carbon::now()->addMilliseconds($diferen);
+                // $grade->start_point = Carbon::now();
+                $dif = $grade->counter - $grade->summary;
+                $grade->duration = $grade->duration - $dif;
+                $grade->summary = $grade->counter;
+                $grade->update();
+                }
+
+
             $data[] = [
                 'exam_group' => $exam_group,
                 'grade'      => $grade
             ];
 
         }
+
 
         //return with inertia
         return inertia('Participant/Dashboard/Index', [

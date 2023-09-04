@@ -4,10 +4,13 @@
         <title>Login Administrator - CBT Online</title>
     </Head>
     <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-        <div class="text-center text-md-center mb-4 mt-md-0">
-            <h3>ADMINISTRATOR</h3>
-        </div>
+        <div class="text-center">
+                  <img src="\assets\images\logo-cbt.png"
+                    style="width: 185px;" alt="logo">
+                  <h4 class="mt-0 mb-5">Uji Kompetensi <br>Jabatan Fungsional Kepegawaian</h4>
+                </div>
         <form @submit.prevent="submit" class="mt-4">
+            <p class="ms-1">Login menggunakan akun Administrator</p>
             <div class="form-group mb-4">
                 <div class="input-group">
                 <div class="form-floating">

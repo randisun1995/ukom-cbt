@@ -14,10 +14,14 @@ class Grade extends Model
         'exam_session_id',
         'participant_id',
         'duration',
+        'duration_last',
+        'status',
         'start_time',
         'end_time',
         'total_correct',
         'grade',
+        'end',
+        'summary',
     ];
 
     public function exam()

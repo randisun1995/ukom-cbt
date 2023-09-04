@@ -52,7 +52,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label>Waktu Selesai</label>
-                                        <Datepicker v-model="form.end_time" />
+                                        <Datepicker v-model="form.end_time" @input="validateEndTime" />
                                         <div v-if="errors.end_time" class="alert alert-danger mt-2">
                                             {{ errors.end_time }}
                                         </div>
@@ -130,6 +130,18 @@
             //method "submit"
             const submit = () => {
 
+                const start = new Date(form.start_time);
+                const end = new Date(form.end_time);
+
+            if (end < start) {
+                // show error alert
+                Swal.fire({
+                title: 'Error!',
+                text: 'Waktu selesai tidak boleh lebih kecil dari waktu mulai.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                });
+            } else {
                 //send data to server
                 Inertia.post('/admin/exam_sessions', {
                     //data
@@ -149,18 +161,19 @@
                         });
                     },
                 });
-
             }
+        };
+
 
             //return
             return {
                 form,
                 submit,
-            }
+            };
+        },
 
-        }
+    };
 
-    }
 
 </script>
 

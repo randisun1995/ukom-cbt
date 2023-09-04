@@ -33,7 +33,6 @@
                                             </td>
                                             <td>{{ participant.name }}</td>
                                             <td class="text-center">{{ participant.position.title }}</td>
-                                            <td class="text-center">{{ participant.type }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

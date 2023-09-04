@@ -21,7 +21,7 @@ class ParticipantController extends Controller
     public function index()
     {
 
-        
+
         //get participant
         $participants = Participant::when(request()->q, function($participants) {
             $participants = $participants->where('name', 'like', '%'. request()->q . '%');
@@ -44,13 +44,13 @@ class ParticipantController extends Controller
     public function create()
     {
         //get data
-       
+
         $positions = Position::with('level')->get();
         $instansis = Instansi::all();
 
         //render with inertia
         return inertia('Admin/Participants/Create', [
-           
+
             'positions' => $positions,
             'instansis' => $instansis,
         ]);

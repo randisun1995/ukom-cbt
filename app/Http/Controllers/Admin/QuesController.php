@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Exam;
 use App\Models\Question;
 use Illuminate\Http\Request;
-use App\Imports\QuestionsImport;
+use App\Imports\QuestionsImportall;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -186,9 +186,9 @@ class QuesController extends Controller
         ]);
 
         // import data
-        Excel::import(new QuestionsImport(), $request->file('file'));
+        Excel::import(new QuestionsImportAll(), $request->file('file'));
+       //redirect
 
-        //redirect
         return redirect()->route('admin.questions.index');
     }
 }
