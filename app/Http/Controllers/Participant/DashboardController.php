@@ -72,8 +72,11 @@ class DashboardController extends Controller
 
 
         //return with inertia
-        return inertia('Participant/Dashboard/Index', [
-            'exam_groups' => $data,
+        // return inertia('Participant/Dashboard/Index', [
+        //     'exam_groups' => $data,
+
+            return inertia('Participant/Dashboard/Index2', [
+                'exam_groups' => $data,
         ]);
     }
 }

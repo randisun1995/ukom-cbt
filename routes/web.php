@@ -53,11 +53,12 @@ Route::prefix('admin')->group(function() {
         Route::delete('/exam_sessions/{exam_session}/enrolle/{exam_group}/destroy', [\App\Http\Controllers\Admin\ExamSessionController::class, 'destroyEnrolle'])->name('admin.exam_sessions.destroyEnrolle');
         //route index reports
         Route::get('/reports', [\App\Http\Controllers\Admin\ReportController::class, 'index'])->name('admin.reports.index');
-
         //route index reports filter
         Route::get('/reports/filter', [\App\Http\Controllers\Admin\ReportController::class, 'filter'])->name('admin.reports.filter');
         //route index reports export
         Route::get('/reports/export', [\App\Http\Controllers\Admin\ReportController::class, 'export'])->name('admin.reports.export');
+         //route resource levels
+         Route::resource('/appraisers', \App\Http\Controllers\Admin\AppraiserController::class, ['as' => 'admin']);
 
     });
 });
@@ -105,4 +106,10 @@ Route::prefix('participant')->group(function() {
 
     });
 
+});
+
+Route::prefix('appraiser')->group(function() {
+Route::get('/dashboard', App\Http\Controllers\Appraiser\DashboardController::class)->name('appraiser.dashboard');
+Route::resource('/interviews', App\Http\Controllers\Appraiser\InterviewController::class);
+Route::resource('/sbes', App\Http\Controllers\Appraiser\SBEController::class);
 });

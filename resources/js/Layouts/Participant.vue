@@ -13,6 +13,10 @@
             </div>
         </div>
     </nav>
+
+      <!-- sidebar -->
+      <Sidebar />
+
     <div class="container">
         <slot />
     </div>
@@ -23,11 +27,16 @@
     //import Link
     import { Link } from '@inertiajs/inertia-vue3';
 
+     //import sidebar
+     import Sidebar from '../Components/NavbarParticipant.vue';
+
+
     export default {
 
         //register components
         components: {
-            Link
+            Link,
+            Sidebar
         },
 
     }
