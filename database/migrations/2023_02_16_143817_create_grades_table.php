@@ -19,9 +19,6 @@ return new class extends Migration
             $table->foreignId('exam_session_id')->references('id')->on('exam_sessions')->cascadeOnDelete();
             $table->foreignId('participant_id')->references('id')->on('participants')->cascadeOnDelete();
             $table->integer('duration');
-
-
-
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
             $table->integer('total_correct');

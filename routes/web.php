@@ -58,13 +58,23 @@ Route::prefix('admin')->group(function() {
         //route index reports export
         Route::get('/reports/export', [\App\Http\Controllers\Admin\ReportController::class, 'export'])->name('admin.reports.export');
          //route resource levels
-         Route::resource('/appraisers', \App\Http\Controllers\Admin\AppraiserController::class, ['as' => 'admin']);
-
+         Route::resource('/examiners', \App\Http\Controllers\Admin\ExaminerController::class, ['as' => 'admin']);
+         //custom route for enrolle create
+         Route::get('/examiners/{examiner}/enrolle/create', [\App\Http\Controllers\Admin\ExaminerController::class, 'createEnrolle'])->name('admin.examiners.createEnrolle');
+        //custom route for enrolle store
+        Route::post('/examiners/{examiner}/enrolle/store', [\App\Http\Controllers\Admin\ExaminerController::class, 'storeEnrolle'])->name('admin.examiners.storeEnrolle');
+        //custom route for enrolle destroy
+        Route::delete('/examiners/{examiner}/enrolle/{examiner_group}/destroy', [\App\Http\Controllers\Admin\ExaminerController::class, 'destroyEnrolle'])->name('admin.examiners.destroyEnrolle');
+        //route resource Indicator
+        Route::resource('/indicators', \App\Http\Controllers\Admin\IndicatorController::class, ['as' => 'admin']);
+        //route resource Indicator
+        Route::resource('/indicators/cathegory', \App\Http\Controllers\Admin\IndicatorCathegoryController::class, ['as' => 'admin']);
+        //route resource sertifikat
+        Route::resource('/certificates', \App\Http\Controllers\Admin\CertificateController::class, ['as' => 'admin']);
     });
 });
 
-
-//route homepage
+//route login participants
 Route::get('/', function () {
     //cek session participants
     if(auth()->guard('participant')->check()) {
@@ -74,17 +84,21 @@ Route::get('/', function () {
     return \Inertia\Inertia::render('Participant/Login/Index');
 });
 
+
 //login participants
 Route::post('/participants/login', \App\Http\Controllers\Participant\LoginController::class)->name('participant.login');
 
 //prefix "participant"
 Route::prefix('participant')->group(function() {
 
-    //middleware "student"
+    //middleware "participant"
     Route::group(['middleware' => 'participant'], function () {
 
         //route dashboard
         Route::get('/dashboard', App\Http\Controllers\Participant\DashboardController::class)->name('participant.dashboard');
+
+         //route sertifikat
+         Route::get('/certificate', App\Http\Controllers\Participant\CertificateController::class)->name('participant.certificate');
 
         //route exam confirmation
         Route::get('/exam-confirmation/{id}', [App\Http\Controllers\Participant\ExamController::class, 'confirmation'])->name('participant.exams.confirmation');
@@ -108,8 +122,24 @@ Route::prefix('participant')->group(function() {
 
 });
 
-Route::prefix('appraiser')->group(function() {
-Route::get('/dashboard', App\Http\Controllers\Appraiser\DashboardController::class)->name('appraiser.dashboard');
-Route::resource('/interviews', App\Http\Controllers\Appraiser\InterviewController::class);
-Route::resource('/sbes', App\Http\Controllers\Appraiser\SBEController::class);
+//route homepage
+Route::get('/examiners', function () {
+    //cek session participants
+    if(auth()->guard('examiner')->check()) {
+        return redirect()->route('examiners.dashboard');
+    }
+    //return view login
+    return \Inertia\Inertia::render('Examiners/Login/Index');
+});
+
+//login examiners
+Route::post('/examiners/login', \App\Http\Controllers\Examiner\LoginController::class)->name('examiners.login');
+Route::prefix('examiners')->group(function() {
+Route::get('/dashboard', App\Http\Controllers\Examiner\DashboardController::class)->name('examiners.dashboard');
+// Route::get('/interviews/{id}', [App\Http\Controllers\Examiner\InterviewController::class, 'grade']);
+Route::resource('/interviews', App\Http\Controllers\Examiner\InterviewController::class, ['as' => 'examiner']);
+Route::get('/interviews/create/{id}', [App\Http\Controllers\Examiner\InterviewController::class, 'create']);
+
+
+
 });

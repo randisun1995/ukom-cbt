@@ -17,7 +17,6 @@
                                 <tbody>
                                     <tr>
                                         <td style="width:30%" class="fw-bold">Nama Ujian</td>
-                                        <td>{{ exam_session.exam.title }}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">Jabatan Dituju</td>
@@ -38,7 +37,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
 

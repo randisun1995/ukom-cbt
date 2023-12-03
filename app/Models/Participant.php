@@ -17,7 +17,7 @@ class Participant extends Authenticatable
         'name',
         'password',
         'instansi_id',
-        // 'type'
+        'type'
     ];
 
     public function position()

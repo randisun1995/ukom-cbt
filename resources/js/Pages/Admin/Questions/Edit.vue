@@ -12,12 +12,12 @@
                         <hr>
                         <form @submit.prevent="submit">
 
-                            <div class="table-responsive mb-4">
-                                <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
-                                    <tbody>
-                                        <tr>
-                                            <td style="width:20%" class="fw-bold">Soal</td>
-                                            <td>
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <label for="soal">Soal</label>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <div class="mb-4">
                                                 <Editor
                                                     api-key="no-api-key"
                                                     v-model="form.question"
@@ -27,86 +27,141 @@
                                                         toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
                                                     }"
                                                 />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:20%" class="fw-bold">Pilihan A</td>
-                                            <td>
-                                                <Editor
-                                                    api-key="no-api-key"
-                                                    v-model="form.option_1"
-                                                    :init="{
-                                                        height: 130,
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:20%" class="fw-bold">Pilihan B</td>
-                                            <td>
-                                                <Editor
-                                                    api-key="no-api-key"
-                                                    v-model="form.option_2"
-                                                    :init="{
-                                                        height: 130,
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:20%" class="fw-bold">Pilihan C</td>
-                                            <td>
-                                                <Editor
-                                                    api-key="no-api-key"
-                                                    v-model="form.option_3"
-                                                    :init="{
-                                                        height: 130,
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:20%" class="fw-bold">Pilihan D</td>
-                                            <td>
-                                                <Editor
-                                                    api-key="no-api-key"
-                                                    v-model="form.option_4"
-                                                    :init="{
-                                                        height: 130,
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:20%" class="fw-bold">Pilihan E</td>
-                                            <td>
-                                                <Editor
-                                                    api-key="no-api-key"
-                                                    v-model="form.option_5"
-                                                    :init="{
-                                                        height: 130,
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:20%" class="fw-bold">Jawaban Benar</td>
-                                            <td>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="exam.type !== 'Teks'">
+                                                <div class="row">
+                                                    <div class="col-md-1">
+                                                        <label for="">Pilihan A</label>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="mb-4">
+                                                            <Editor
+                                                                api-key="no-api-key"
+                                                                v-model="form.option_1"
+                                                                :init="{
+                                                                    height: 150,
+                                                                    menubar: false,
+                                                                    plugins: 'lists link image emoticons',
+                                                                    toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
+                                                                }"
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-1">
+                                                        <label for="">Pilihan B</label>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="mb-4">
+                                                                <Editor
+                                                                    api-key="no-api-key"
+                                                                    v-model="form.option_2"
+                                                                    :init="{
+                                                                        height: 150,
+                                                                        menubar: false,
+                                                                        plugins: 'lists link image emoticons',
+                                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
+                                                                    }"
+                                                                />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-1">
+                                                        <label for="">Pilihan C</label>
+                                                    </div>
+                                                        <div class="col-md-5">
+                                                            <div class="mb-4">
+                                                                <Editor
+                                                                    api-key="no-api-key"
+                                                                    v-model="form.option_3"
+                                                                    :init="{
+                                                                        height: 150,
+                                                                        menubar: false,
+                                                                        plugins: 'lists link image emoticons',
+                                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
+                                                                    }"
+                                                                />
+                                                            </div>
+                                                        </div>
+
+                                                    <div class="col-md-1">
+                                                        <label for="">Pilihan D</label>
+                                                    </div>
+                                                        <div class="col-md-5">
+                                                            <div class="mb-4">
+                                                                <Editor
+                                                                    api-key="no-api-key"
+                                                                    v-model="form.option_4"
+                                                                    :init="{
+                                                                        height: 150,
+                                                                        menubar: false,
+                                                                        plugins: 'lists link image emoticons',
+                                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
+                                                                    }"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-1">
+                                                        <label for="">Pilihan E</label>
+                                                    </div>
+                                                        <div class="col-md-5">
+                                                            <div class="mb-4">
+                                                                <Editor
+                                                                    api-key="no-api-key"
+                                                                    v-model="form.option_5"
+                                                                    :init="{
+                                                                        height: 150,
+                                                                        menubar: false,
+                                                                        plugins: 'lists link image emoticons',
+                                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
+                                                                    }"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                            <div class="col-md-1">
+                                                                <label for="" class="mb-2">Tipe</label>
+                                                                    <p></p>
+                                                                <label for="" class="mb-2">Level</label>
+                                                                <p></p>
+                                                                <label for="" class="mb-2">Kesulitan</label>
+                                                            </div>
+
+                                                            <div class="col-md-5">
+                                                                <div class="mb-2">
+                                                                    <select class="form-control" v-model="form.type">
+                                                                        <option value="" disabled selected>Pilih salah satu opsi</option>
+                                                                                <option value="PG">Pilihan Ganda</option>
+                                                                                <option value="Teks">Text</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="mb-2">
+                                                                    <select class="form-control" v-model="form.level">
+                                                                    <option value="" disabled selected>Pilih salah satu opsi</option>
+                                                                            <option value="1">Analis SDM Pertama</option>
+                                                                            <option value="2">Analis SDM Muda</option>
+                                                                            <option value="3">Analis SDM Madya</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="mb-4">
+                                                                    <select class="form-control" v-model="form.difficulty">
+                                                                        <option value="" disabled selected>Pilih salah satu opsi</option>
+                                                                            <option value="Mudah">Mudah</option>
+                                                                            <option value="Sedang">Sedang</option>
+                                                                            <option value="Sulit">Sulit</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                            <label for="" class="mb-4">Jawaban</label>
+                                            </div>
                                                 <select class="form-control" v-model="form.answer">
                                                     <option value="1">A</option>
                                                     <option value="2">B</option>
@@ -114,14 +169,24 @@
                                                     <option value="4">D</option>
                                                     <option value="5">E</option>
                                                 </select>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                            </div>
+                                        </div>
 
-                            <button type="submit" class="btn btn-md btn-primary border-0 shadow me-2">Simpan</button>
-                            <button type="reset" class="btn btn-md btn-warning border-0 shadow">Reset</button>
+                                        <div v-if="exam.type == 'Teks'">
+                                             <div class="row">
+                                                <div class="col-md-1">
+                                                <label for="" class="mb-4">Jawaban</label>
+                                                </div>
+
+                                                <div class="col-md-11">
+                                                    <div class="mb-4">
+                                                        <input type="text" class="form-control" v-model="form.answer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            <button type="submit" class="btn btn-md btn-primary border-0 shadow me-2 mt-4">Simpan</button>
+                            <button type="reset" class="btn btn-md btn-warning border-0 shadow mt-4">Reset</button>
                         </form>
                     </div>
                 </div>
@@ -183,6 +248,9 @@
                 option_4: props.question.option_4,
                 option_5: props.question.option_5,
                 answer: props.question.answer,
+                level: props.question.level,
+                type: props.question.type,
+                difficulty: props.question.difficulty,
             });
 
             //method "submit"
@@ -198,6 +266,9 @@
                     option_4: form.option_4,
                     option_5: form.option_5,
                     answer: form.answer,
+                    level: form.level,
+                    type: form.type,
+                    difficulty: form.difficulty,
                 }, {
                     onSuccess: () => {
                         //show success alert

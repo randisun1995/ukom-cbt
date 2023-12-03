@@ -17,6 +17,9 @@ class Question extends Model
         'option_3',
         'option_4',
         'option_5',
+        'type',
+        'level',
+        'difficulty',
         'answer',
     ];
 

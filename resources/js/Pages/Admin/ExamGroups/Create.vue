@@ -1,6 +1,6 @@
 <template>
     <Head>
-        <title>Enrolle Siswa - Aplikasi CBT Online</title>
+        <title>Enrolle Peserta - Aplikasi CBT Online</title>
     </Head>
     <div class="container-fluid mb-5 mt-5">
         <div class="row">

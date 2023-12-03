@@ -50,6 +50,7 @@
                                     <div class="mb-4">
                                         <label>Instansi</label>
                                         <select class="form-select" v-model="form.instansi_id">
+                                            <option value="" disabled selected>Pilih salah satu opsi</option>
                                             <option v-for="(instansi, index) in instansis" :key="index" :value="instansi.id">{{ instansi.title }}</option>
                                         </select>
                                         <div v-if="errors.instansi_id" class="alert alert-danger mt-2">
@@ -57,33 +58,32 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-6">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Jenis Ujian</label>
+                                        <label>Jenis Uji Kompetensi</label>
                                         <select class="form-select" v-model="form.type">
-                                            <option value="K">Kenaikan Jenjang</option>
-                                            <option value="P">Perpindahan Jabatan</option>
+                                            <option value="" disabled selected>Pilih salah satu opsi</option>
+                                            <option value="KJ">Kenaikan Jenjang</option>
+                                            <option value="PJ">Perpindahan Jabatan</option>
                                         </select>
                                         <div v-if="errors.type" class="alert alert-danger mt-2">
                                             {{ errors.type }}
                                         </div>
                                     </div>
-                                </div> -->
-                            </div>
+                                </div>
 
-                            <div class="row">
                                 <!-- <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Jenjang</label>
-                                        <select class="form-select" v-model="form.level_id">
-                                            <option v-for="(level, index) in levels" :key="index" :value="level.id">{{ level.title }}</option>
-                                        </select>
-                                        <div v-if="errors.level_id" class="alert alert-danger mt-2">
-                                            {{ errors.level_id }}
+                                        <label>Jabatan Saat Ini</label>
+                                        <input type="text" class="form-control" placeholder="Masukkan Jabatan Saat Ini" v-model="form.oldposition">
+                                        <div v-if="errors.oldposition" class="alert alert-danger mt-2">
+                                            {{ errors.oldposition }}
                                         </div>
                                     </div>
                                 </div> -->
-                                
                             </div>
 
                             <div class="row">
@@ -161,9 +161,9 @@
                 nip: '',
                 name: '',
                 position_id: '',
-                // level_id: '',
+                // oldposition: '',
                 instansi_id: '',
-                // type: '',
+                type: '',
                 password: '',
                 password_confirmation: ''
             });
@@ -177,9 +177,9 @@
                     nip: form.nip,
                     name: form.name,
                     position_id: form.position_id,
-                    // level_id: form.level_id,
+                    // oldposition: form.oldposition,
                     instansi_id: form.instansi_id,
-                    // type: form.type,
+                    type: form.type,
                     password: form.password,
                     password_confirmation: form.password_confirmation
                 }, {

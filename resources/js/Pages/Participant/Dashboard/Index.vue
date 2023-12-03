@@ -1,6 +1,6 @@
 .<template>
     <Head>
-        <title>Dashboard Siswa - Aplikasi CBT Online</title>
+        <title>Dashboard Peserta - Aplikasi CBT Online</title>
     </Head>
     <div class="row">
         <div class="col-md-12">
@@ -51,11 +51,9 @@
                             <div v-else>
                                 <Link :href="`/participant/exam/${data.exam_group.id}/1`" class="btn btn-md btn-info border-0 shadow w-100 mt-2">Lanjut Kerjakan</Link>
                             </div>
-
                         </div>
 
                         <div v-else>
-
                             <!-- ujian belum mulai-->
                             <div v-if="examTimeStartChecker(data.exam_group.exam_session.start_time)">
                                 <button class="btn btn-md btn-gray-700 border-0 shadow w-100 mt-2" disabled>Belum Mulai</button>
@@ -65,9 +63,7 @@
                             <div v-if="examTimeEndChecker(data.exam_group.exam_session.end_time)">
                                 <button class="btn btn-md btn-danger border-0 shadow w-100 mt-2" disabled>Waktu Terlewat</button>
                             </div>
-
                         </div>
-
                     </div>
 
                     <div v-else>
@@ -77,6 +73,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     <div class="row" v-else>
         <div class="col-md-12">
@@ -109,6 +106,7 @@
         //register props
         props: {
             exam_groups: Array,
+            sertificate: Object,
             auth: Object
         }
 

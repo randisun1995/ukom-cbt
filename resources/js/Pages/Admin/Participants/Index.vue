@@ -46,6 +46,7 @@
                                         <th class="border-0">NIP</th>
                                         <th class="border-0">Nama</th>
                                         <th class="border-0">Jabatan Dituju</th>
+                                        <th class="border-0">Jenis Ujikom</th>
                                         <th class="border-0">Password</th>
                                         <th class="border-0 rounded-end" style="width:15%">Aksi</th>
                                     </tr>
@@ -58,6 +59,7 @@
                                         <td>{{ participant.nip }}</td>
                                         <td>{{ participant.name }}</td>
                                         <td class="">{{ participant.position.title }} {{ participant.position.level.title }}</td>
+                                        <td>{{ participant.type }}</td>
                                         <td>{{ participant.password }}</td>
                                         <td class="text-center">
                                             <Link :href="`/admin/participants/${participant.id}/edit`" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></Link>

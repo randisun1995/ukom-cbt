@@ -28,6 +28,7 @@
                                     <div class="mb-4">
                                         <label>Ujian</label>
                                         <select class="form-select" v-model="form.exam_id">
+                                            <option value="" disabled selected>Pilih salah satu opsi</option>
                                             <option v-for="(exam, index) in exams" :key="index" :value="exam.id">
                                                 {{ exam.title }}</option>
                                         </select>

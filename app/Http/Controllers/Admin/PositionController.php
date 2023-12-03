@@ -62,7 +62,7 @@ class PositionController extends Controller
             'level_id' => 'required'
         ]);
 
-        //create classroom
+        //create level
         Position::create([
             'title' => $request->title,
             'level_id' => $request->level_id,

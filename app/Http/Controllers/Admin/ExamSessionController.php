@@ -175,17 +175,29 @@ class ExamSessionController extends Controller
         //get exams
         $exam = $exam_session->exam;
 
-        //get participants already enrolled
-        $participants_enrolled = ExamGroup::where('exam_id', $exam->id)->where('exam_session_id', $exam_session->id)->pluck('participant_id')->all();
+        if ($exam->position->title === "Umum") {
+            $participantsEnrolled = ExamGroup::where('exam_id',  $exam_session->id)
+                ->where('exam_session_id',  $exam_session->id)
+                ->pluck('participant_id')
+                ->all();
 
-        //get participants
-        $participants = Participant::with('position')->where('position_id', $exam->position_id)->whereNotIn('id', $participants_enrolled)->get();
+                $participants = Participant::with('position')
+                ->whereNotIn('id', $participantsEnrolled)
+                ->get();
+        } else {
+
+                //get participants already enrolled
+                $participants_enrolled = ExamGroup::where('exam_id', $exam->id)->where('exam_session_id', $exam_session->id)->pluck('participant_id')->all();
+
+                //get participants
+                $participants = Participant::with('position')->where('position_id', $exam->position_id)->whereNotIn('id', $participants_enrolled)->get();
+        }
 
         //render with inertia
         return inertia('Admin/ExamGroups/Create', [
             'exam'          => $exam,
             'exam_session'  => $exam_session,
-            'participants'      => $participants,
+            'participants'  => $participants,
         ]);
     }
 
@@ -212,7 +224,7 @@ class ExamSessionController extends Controller
             ExamGroup::create([
                 'exam_id'         => $request->exam_id,
                 'exam_session_id' => $exam_session->id,
-                'participant_id'      => $participant->id,
+                'participant_id'  => $participant->id,
             ]);
         }
 
@@ -228,4 +240,5 @@ class ExamSessionController extends Controller
         //redirect
         return redirect()->route('admin.exam_sessions.show', $exam_session->id);
     }
+
 }

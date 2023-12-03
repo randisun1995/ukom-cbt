@@ -21,7 +21,6 @@ class ParticipantController extends Controller
     public function index()
     {
 
-
         //get participant
         $participants = Participant::when(request()->q, function($participants) {
             $participants = $participants->where('name', 'like', '%'. request()->q . '%');
@@ -71,18 +70,20 @@ class ParticipantController extends Controller
             'name'          => 'required|string|max:255',
             'nip'           => 'required|unique:participants',
             'password'      => 'required|confirmed',
-            'instansi_id'  => 'required'
+            'instansi_id'   => 'required',
+            'type'          => 'required'
         ]);
 
 
 
-        //create student
+        //create participant
         Participant::create([
             'position_id'   => $request->position_id,
             'name'          => $request->name,
-            'nip'          => $request->nip,
+            'nip'           => $request->nip,
             'password'      => $request->password,
-            'instansi_id'  => $request->instansi_id
+            'instansi_id'   => $request->instansi_id,
+            'type'          => $request->type
         ]);
 
         //redirect
@@ -100,7 +101,7 @@ class ParticipantController extends Controller
         //get participant
         $participant = Participant::findOrFail($id);
 
-        //get classrooms
+        //get level
         $positions = Position::with('level')->get();
         $instansis = Instansi::all();
         //render with inertia
@@ -125,8 +126,9 @@ class ParticipantController extends Controller
             'position_id'   => 'required',
             'name'          => 'required|string|max:255',
             'nip'           => 'required|unique:participants,nip,'.$participant->id,
-            'instansi_id'  => 'required',
-            'password'      => 'confirmed'
+            'instansi_id'   => 'required',
+            'password'      => 'confirmed',
+            'type'          => 'required'
         ]);
 
         //check passwordy
@@ -136,8 +138,9 @@ class ParticipantController extends Controller
             $participant->update([
                 'position_id'   => $request->position_id,
                 'name'          => $request->name,
-                'nip'          => $request->nip,
-                'instansi_id'  => $request->instansi_id
+                'nip'           => $request->nip,
+                'instansi_id'   => $request->instansi_id,
+                'type'          => $request->type
             ]);
 
         } else {
@@ -146,9 +149,10 @@ class ParticipantController extends Controller
             $participant->update([
                 'position_id'   => $request->position_id,
                 'name'          => $request->name,
-                'nip'          => $request->nip,
+                'nip'           => $request->nip,
                 'password'      => $request->password,
-                'instansi_id'  => $request->instansi_id
+                'instansi_id'   => $request->instansi_id,
+                'type'          => $request->type
             ]);
 
         }
@@ -166,10 +170,10 @@ class ParticipantController extends Controller
      */
     public function destroy($id)
     {
-        //get student
+        //get participant
         $participant = Participant::findOrFail($id);
 
-        //delete student
+        //delete participant
         $participant->delete();
 
         //redirect

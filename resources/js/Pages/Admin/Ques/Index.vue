@@ -50,14 +50,16 @@
                                         <td>
                                             <div style="word-wrap: break-word; white-space: normal;" class="fw-bold" v-html="ques.question"></div>
                                             <div class="mt-2" v-html="ques.exam.title"></div>
-                                            <hr>
-                                            <ol type="A">
-                                                <li v-html="ques.option_1" :class="{ 'text-success fw-bold': ques.answer == '1' }"></li>
-                                                <li v-html="ques.option_2" :class="{ 'text-success fw-bold': ques.answer == '2' }"></li>
-                                                <li v-html="ques.option_3" :class="{ 'text-success fw-bold': ques.answer == '3' }"></li>
-                                                <li v-html="ques.option_4" :class="{ 'text-success fw-bold': ques.answer == '4' }"></li>
-                                                <li v-html="ques.option_5" :class="{ 'text-success fw-bold': ques.answer == '5' }"></li>
-                                            </ol>
+                                            <div v-if="ques.exam.type !== 'Teks'">
+                                                <hr>
+                                                <ol type="A">
+                                                    <li v-html="ques.option_1" :class="{ 'text-success fw-bold': ques.answer == '1' }"></li>
+                                                    <li v-html="ques.option_2" :class="{ 'text-success fw-bold': ques.answer == '2' }"></li>
+                                                    <li v-html="ques.option_3" :class="{ 'text-success fw-bold': ques.answer == '3' }"></li>
+                                                    <li v-html="ques.option_4" :class="{ 'text-success fw-bold': ques.answer == '4' }"></li>
+                                                    <li v-html="ques.option_5" :class="{ 'text-success fw-bold': ques.answer == '5' }"></li>
+                                                </ol>
+                                            </div>
                                         </td>
                                         <td class="text-center" style="vertical-align: middle;">
                                             <Link :href="`/admin/questions/${ques.id}/edit`" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></Link>

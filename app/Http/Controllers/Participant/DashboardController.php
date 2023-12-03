@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Participant;
 
+use Carbon\Carbon;
 use App\Models\Grade;
 use App\Models\ExamGroup;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
+
 class DashboardController extends Controller
 {
     /**
@@ -77,6 +78,9 @@ class DashboardController extends Controller
 
             return inertia('Participant/Dashboard/Index2', [
                 'exam_groups' => $data,
+
         ]);
     }
+
+
 }

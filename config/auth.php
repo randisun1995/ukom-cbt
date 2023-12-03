@@ -40,9 +40,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
         'participant' => [
             'driver' => 'session',
             'provider' => 'participants',
+        ],
+
+        'examiner' => [
+            'driver' => 'session',
+            'provider' => 'examiners',
         ],
     ],
 
@@ -72,6 +78,11 @@ return [
         'participants' => [
             'driver' => 'eloquent',
             'model' => App\Models\Participant::class,
+        ],
+
+        'examiners' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Examiner::class,
         ],
 
         // 'users' => [

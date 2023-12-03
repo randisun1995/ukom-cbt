@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Jabatan</label>
+                                        <label>Jabatan Dituju</label>
                                         <select class="form-select" v-model="form.position_id">
                                             <option v-for="(position, index) in positions" :key="index" :value="position.id">{{ position.title }}</option>
                                         </select>
@@ -34,21 +34,38 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4">
-                                <label>Deskripsi</label>
-                                <Editor
-                                    api-key="no-api-key"
-                                    v-model="form.description"
-                                    :init="{
-                                        menubar: false,
-                                        plugins: 'lists link image emoticons',
-                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                    }"
-                                />
-                                <div v-if="errors.description" class="alert alert-danger mt-2">
-                                    {{ errors.description }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Deskripsi</label>
+                                        <Editor
+                                            api-key="no-api-key"
+                                            v-model="form.description"
+                                            :init="{
+                                                menubar: false,
+                                                plugins: 'lists link image emoticons',
+                                                toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
+                                            }"
+                                        />
+                                        <div v-if="errors.description" class="alert alert-danger mt-2">
+                                            {{ errors.description }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Type</label>
+                                        <select class="form-select" v-model="form.type">
+                                            <option value="PG">Pilihan Ganda</option>
+                                            <option value="Teks">Teks</option>
+                                        </select>
+                                        <div v-if="errors.type" class="alert alert-danger mt-2">
+                                            {{ errors.type }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -163,6 +180,7 @@
                 position_id: props.exam.position_id,
                 duration: props.exam.duration,
                 description: props.exam.description,
+                type: props.exam.type,
                 random_question: props.exam.random_question,
                 random_answer: props.exam.random_answer,
                 show_answer: props.exam.show_answer,
@@ -179,6 +197,7 @@
                     position_id: form.position_id,
                     duration: form.duration,
                     description: form.description,
+                    type: form.type,
                     random_question: form.random_question,
                     random_answer: form.random_answer,
                     show_answer: form.show_answer,

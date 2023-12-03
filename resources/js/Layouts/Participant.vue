@@ -1,9 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark navbar-theme-primary bg-dark mb-4 shadow">
         <div class="container position-relative">
-            <Link class="navbar-brand" href="/participant/dashboard">
                 <img class="navbar-brand-dark" src="/assets/images/logo-pusbin.png" style="height:100px">
-            </Link>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 </ul>
@@ -28,7 +26,7 @@
     import { Link } from '@inertiajs/inertia-vue3';
 
      //import sidebar
-     import Sidebar from '../Components/NavbarParticipant.vue';
+     import Sidebar from '../Components/SidebarParticipant.vue';
 
 
     export default {

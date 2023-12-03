@@ -57,35 +57,31 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-
-                                <!-- <div class="col-md-6">
+                            <div class="row">
+                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label>Jenis Ukom</label>
                                         <select class="form-select" v-model="form.type">
-                                            <option value="K">Kenaikan Jenjang</option>
-                                            <option value="P">Perpindahan Jabatan</option>
+                                            <option value="KJ">Kenaikan Jenjang</option>
+                                            <option value="PJ">Perpindahan Jabatan</option>
                                         </select>
                                         <div v-if="errors.type" class="alert alert-danger mt-2">
                                             {{ errors.type }}
                                         </div>
                                     </div>
-                                </div> -->
-                            </div>
-
-                            <div class="row">
+                                </div>
                                 <!-- <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Jenjang</label>
-                                        <select class="form-select" v-model="form.level_id">
-                                            <option v-for="(level, index) in levels" :key="index" :value="level.id">{{ level.title }}</option>
-                                        </select>
-                                        <div v-if="errors.level_id" class="alert alert-danger mt-2">
-                                            {{ errors.level_id }}
+                                        <label>Jabatan Saat Ini</label>
+                                       <input type="text" class="form-control" placeholder="Masukkan Jabatan Saat Ini" v-model="form.oldposition">
+                                        <div v-if="errors.oldposition" class="alert alert-danger mt-2">
+                                            {{ errors.oldposition }}
                                         </div>
                                     </div>
                                 </div> -->
-                               
+
                             </div>
 
                             <div class="row">
@@ -166,7 +162,7 @@
                 position_id: props.participant.position_id,
                 // level_id: props.participant.level_id,
                 instansi_id: props.participant.instansi_id,
-                // type: props.participant.type,
+                type: props.participant.type,
                 password: '',
                 password_confirmation: ''
             });
@@ -182,7 +178,7 @@
                     position_id: form.position_id,
                     // level_id: form.level_id,
                     instansi_id: form.instansi_id,
-                    // type: form.type,
+                    type: form.type,
                     password: form.password,
                     password_confirmation: form.password_confirmation
                 }, {

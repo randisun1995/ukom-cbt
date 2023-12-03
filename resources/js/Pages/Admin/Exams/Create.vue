@@ -26,6 +26,7 @@
                                     <div class="mb-4">
                                         <label>Jabatan Dituju</label>
                                         <select class="form-select" v-model="form.position_id">
+                                            <option value="" disabled selected>Pilih salah satu opsi</option>
                                             <option v-for="(position, index) in positions" :key="index" :value="position.id">{{ position.title }} {{ position.level.title }}</option>
                                         </select>
                                         <div v-if="errors.position_id" class="alert alert-danger mt-2">
@@ -35,20 +36,36 @@
                                 </div>
                             </div>
 
-
-                            <div class="mb-4">
-                                <label>Deskripsi</label>
-                                <Editor
-                                    api-key="no-api-key"
-                                    v-model="form.description"
-                                    :init="{
-                                        menubar: false,
-                                        plugins: 'lists link image emoticons',
-                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                    }"
-                                />
-                                <div v-if="errors.description" class="alert alert-danger mt-2">
-                                    {{ errors.description }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Deskripsi</label>
+                                        <Editor
+                                            api-key="no-api-key"
+                                            v-model="form.description"
+                                            :init="{
+                                                menubar: false,
+                                                plugins: 'lists link image emoticons',
+                                                toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
+                                            }"
+                                        />
+                                        <div v-if="errors.description" class="alert alert-danger mt-2">
+                                            {{ errors.description }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Tipe Soal</label>
+                                        <select class="form-select" v-model="form.type">
+                                            <option value="" disabled selected>Pilih salah satu opsi</option>
+                                            <option value="PG">Pilihan Ganda</option>
+                                            <option value="Teks">Teks</option>
+                                        </select>
+                                        <div v-if="errors.type" class="alert alert-danger mt-2">
+                                            {{ errors.type }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -57,6 +74,7 @@
                                     <div class="mb-4">
                                         <label>Acak Soal</label>
                                         <select class="form-select" v-model="form.random_question">
+                                            <option value="" disabled selected>Pilih salah satu opsi</option>
                                             <option value="Y">Y</option>
                                             <option value="N">N</option>
                                         </select>
@@ -69,6 +87,7 @@
                                     <div class="mb-4">
                                         <label>Acak Jawaban</label>
                                         <select class="form-select" v-model="form.random_answer">
+                                            <option value="" disabled selected>Pilih salah satu opsi</option>
                                             <option value="Y">Y</option>
                                             <option value="N">N</option>
                                         </select>
@@ -78,12 +97,12 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label>Tampilkan Hasil</label>
                                         <select class="form-select" v-model="form.show_answer">
+                                            <option value="" disabled selected>Pilih salah satu opsi</option>
                                             <option value="Y">Y</option>
                                             <option value="N">N</option>
                                         </select>
@@ -166,6 +185,7 @@
                 description: '',
                 random_question: '',
                 random_answer: '',
+                type: '',
                 show_answer: '',
             });
 
@@ -182,6 +202,7 @@
                     description: form.description,
                     random_question: form.random_question,
                     random_answer: form.random_answer,
+                    type: form.type,
                     show_answer: form.show_answer,
                 }, {
                     onSuccess: () => {

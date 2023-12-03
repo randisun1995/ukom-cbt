@@ -35,6 +35,7 @@ class LoginController extends Controller
         //login the user
         auth()->guard('participant')->login($participant);
 
+
         //redirect to dashboard
         return redirect()->route('participant.dashboard');
     }

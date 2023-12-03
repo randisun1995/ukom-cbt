@@ -18,6 +18,9 @@ class QuesController extends Controller
      */
     public function index()
     {
+        // get exam
+
+
          //get ques
          $ques = Question::when(request()->q, function($ques) {
             $ques = $ques->where('title', 'like', '%'. request()->q . '%');
@@ -62,6 +65,9 @@ class QuesController extends Controller
             'option_3'          => 'required',
             'option_4'          => 'required',
             'option_5'          => 'required',
+            'type'              => 'required',
+            'level'             => 'required',
+            'difficulty'        => 'required',
             'answer'            => 'required',
         ]);
 
@@ -74,6 +80,9 @@ class QuesController extends Controller
             'option_3'          => $request->option_3,
             'option_4'          => $request->option_4,
             'option_5'          => $request->option_5,
+            'type'              => $request->type,
+            'level'             => $request->level,
+            'difficulty'        => $request->difficulty,
             'answer'            => $request->answer,
         ]);
 
@@ -126,6 +135,9 @@ class QuesController extends Controller
             'option_3'          => 'required',
             'option_4'          => 'required',
             'option_5'          => 'required',
+            'type'              => 'required',
+            'level'             => 'required',
+            'difficulty'        => 'required',
             'answer'            => 'required',
         ]);
 
@@ -137,6 +149,9 @@ class QuesController extends Controller
             'option_3'          => $request->option_3,
             'option_4'          => $request->option_4,
             'option_5'          => $request->option_5,
+            'type'              => $request->type,
+            'level'             => $request->level,
+            'difficulty'        => $request->difficulty,
             'answer'            => $request->answer,
         ]);
 

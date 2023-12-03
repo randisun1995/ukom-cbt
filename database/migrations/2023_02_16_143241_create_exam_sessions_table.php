@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('exam_sessions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('exam_id')->references('id')->on('exams')->cascadeOnDelete();
+            $table->foreignId('exam_id')->references('id')->on('exams')->restrictOnDelete()->restrictOnUpdate();
             $table->string('title');
             $table->dateTime('start_time');
             $table->dateTime('end_time');

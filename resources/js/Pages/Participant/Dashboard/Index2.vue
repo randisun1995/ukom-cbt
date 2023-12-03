@@ -1,6 +1,6 @@
 .<template>
     <Head>
-        <title>Dashboard Siswa - Aplikasi CBT Online</title>
+        <title>Dashboard Peserta - Aplikasi CBT Online</title>
     </Head>
     <div class="row">
         <div class="col-md-12">
@@ -77,6 +77,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     <div class="row" v-else>
         <div class="col-md-12">
@@ -85,6 +86,7 @@
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -109,7 +111,8 @@
         //register props
         props: {
             exam_groups: Array,
-            auth: Object
+            auth: Object,
+            sertifikat: Object
         }
 
     }

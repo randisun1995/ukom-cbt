@@ -23,6 +23,9 @@ class QuestionsImportAll implements ToModel, WithHeadingRow
             'option_3'  => $row['option_3'],
             'option_4'  => $row['option_4'],
             'option_5'  => $row['option_5'],
+            'type'      => $row['type'],
+            'level'     => $row['level'],
+            'difficulty'=> $row['difficulty'],
             'answer'    => $row['answer'],
         ]);
     }

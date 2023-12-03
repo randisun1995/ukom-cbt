@@ -58,26 +58,30 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
+
+
         //validate request
         $request->validate([
             'title'             => 'required',
-            'position_id'      => 'required|integer',
+            'position_id'       => 'required|integer',
             'duration'          => 'required|integer',
             'description'       => 'required',
             'random_question'   => 'required',
             'random_answer'     => 'required',
             'show_answer'       => 'required',
+            'type'              => 'required',
         ]);
 
         //create exam
         Exam::create([
             'title'             => $request->title,
-            'position_id'      => $request->position_id,
+            'position_id'       => $request->position_id,
             'duration'          => $request->duration,
             'description'       => $request->description,
             'random_question'   => $request->random_question,
             'random_answer'     => $request->random_answer,
             'show_answer'       => $request->show_answer,
+            'type'              => $request->type,
         ]);
 
         //redirect
@@ -137,23 +141,25 @@ class ExamController extends Controller
         //validate request
         $request->validate([
             'title'             => 'required',
-            'position_id'      => 'required|integer',
+            'position_id'       => 'required|integer',
             'duration'          => 'required|integer',
             'description'       => 'required',
             'random_question'   => 'required',
             'random_answer'     => 'required',
             'show_answer'       => 'required',
+            'type'              => 'required',
         ]);
 
         //update exam
         $exam->update([
             'title'             => $request->title,
-            'position_id'      => $request->position_id,
+            'position_id'       => $request->position_id,
             'duration'          => $request->duration,
             'description'       => $request->description,
             'random_question'   => $request->random_question,
             'random_answer'     => $request->random_answer,
             'show_answer'       => $request->show_answer,
+            'type'              => $request->type,
         ]);
 
         //redirect
@@ -201,28 +207,69 @@ class ExamController extends Controller
      */
     public function storeQuestion(Request $request, Exam $exam)
     {
-        //validate request
-        $request->validate([
-            'question'          => 'required',
-            'option_1'          => 'required',
-            'option_2'          => 'required',
-            'option_3'          => 'required',
-            'option_4'          => 'required',
-            'option_5'          => 'required',
-            'answer'            => 'required',
-        ]);
+        if ($exam->type !== 'Teks'){
+            //validate request
+            $request->validate([
+                'question'          => 'required',
+                'option_1'          => 'required',
+                'option_2'          => 'required',
+                'option_3'          => 'required',
+                'option_4'          => 'required',
+                'option_5'          => 'required',
+                'type'              => 'required',
+                'level'             => 'required',
+                'difficulty'        => 'required',
+                'answer'            => 'required',
 
-        //create question
-        Question::create([
-            'exam_id'           => $exam->id,
-            'question'          => $request->question,
-            'option_1'          => $request->option_1,
-            'option_2'          => $request->option_2,
-            'option_3'          => $request->option_3,
-            'option_4'          => $request->option_4,
-            'option_5'          => $request->option_5,
-            'answer'            => $request->answer,
-        ]);
+            ]);
+
+            //create question
+            Question::create([
+                'exam_id'           => $exam->id,
+                'question'          => $request->question,
+                'option_1'          => $request->option_1,
+                'option_2'          => $request->option_2,
+                'option_3'          => $request->option_3,
+                'option_4'          => $request->option_4,
+                'option_5'          => $request->option_5,
+                'type'              => $request->type,
+                'level'             => $request->level,
+                'difficulty'        => $request->difficulty,
+                'answer'            => $request->answer,
+            ]);
+        } else {
+
+            //validate request
+            $request->validate([
+                'question'          => 'required',
+                'option_1'          => '',
+                'option_2'          => '',
+                'option_3'          => '',
+                'option_4'          => '',
+                'option_5'          => '',
+                'type'              => '',
+                'level'             => '',
+                'difficulty'        => '',
+                'answer'            => '',
+
+            ]);
+
+            //create question
+            Question::create([
+                'exam_id'           => $exam->id,
+                'question'          => $request->question,
+                'option_1'          => $request->option_1,
+                'option_2'          => $request->option_2,
+                'option_3'          => $request->option_3,
+                'option_4'          => $request->option_4,
+                'option_5'          => $request->option_5,
+                'type'              => $request->type,
+                'level'             => $request->level,
+                'difficulty'        => $request->difficulty,
+                'answer'            => $request->answer,
+            ]);
+
+        }
 
         //redirect
         return redirect()->route('admin.exams.show', $exam->id);
@@ -254,6 +301,8 @@ class ExamController extends Controller
      */
     public function updateQuestion(Request $request, Exam $exam, Question $question)
     {
+
+        if ($exam->type !== 'Teks'){
         //validate request
         $request->validate([
             'question'          => 'required',
@@ -262,7 +311,11 @@ class ExamController extends Controller
             'option_3'          => 'required',
             'option_4'          => 'required',
             'option_5'          => 'required',
+            'type'              => 'required',
+            'level'             => 'required',
+            'difficulty'        => 'required',
             'answer'            => 'required',
+
         ]);
 
         //update question
@@ -273,8 +326,40 @@ class ExamController extends Controller
             'option_3'          => $request->option_3,
             'option_4'          => $request->option_4,
             'option_5'          => $request->option_5,
+            'type'              => $request->type,
+            'level'             => $request->level,
+            'difficulty'        => $request->difficulty,
             'answer'            => $request->answer,
         ]);
+    } else {//validate request
+        $request->validate([
+            'question'          => 'required',
+            'option_1'          => '',
+            'option_2'          => '',
+            'option_3'          => '',
+            'option_4'          => '',
+            'option_5'          => '',
+            'type'              => '',
+            'level'             => '',
+            'difficulty'        => '',
+            'answer'            => '',
+
+        ]);
+//
+        //create question
+        $question->update([
+            'question'          => $request->question,
+            'option_1'          => $request->option_1,
+            'option_2'          => $request->option_2,
+            'option_3'          => $request->option_3,
+            'option_4'          => $request->option_4,
+            'option_5'          => $request->option_5,
+            'type'              => $request->type,
+            'level'             => $request->level,
+            'difficulty'        => $request->difficulty,
+            'answer'            => $request->answer,
+        ]);
+    }
 
         //redirect
         return redirect()->route('admin.exams.show', $exam->id);

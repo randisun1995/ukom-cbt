@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('exam_groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('exam_id')->references('id')->on('exams')->cascadeOnDelete();
-            $table->foreignId('exam_session_id')->references('id')->on('exam_sessions')->cascadeOnDelete();
-            $table->foreignId('participant_id')->references('id')->on('participants')->cascadeOnDelete();
+            $table->foreignId('exam_id')->references('id')->on('exams')->restrictOnDelete()->restrictOnUpdate();
+            $table->foreignId('exam_session_id')->references('id')->on('exam_sessions')->restrictOnDelete()->restrictOnUpdate();
+            $table->foreignId('participant_id')->references('id')->on('participants')->restrictOnDelete()->restrictOnUpdate();
             $table->timestamps();
         });
     }
